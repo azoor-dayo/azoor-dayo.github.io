@@ -1,0 +1,469 @@
+<!DOCTYPE html> <html><head>
+		<title>Parallel Programming</title>
+		<base href="../../../">
+		<meta id="root-path" root-path="../../../">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=1.0, maximum-scale=5.0">
+		<meta charset="UTF-8">
+		<meta name="description" content="Documents - Parallel Programming">
+		<meta property="og:title" content="Parallel Programming">
+		<meta property="og:description" content="Documents - Parallel Programming">
+		<meta property="og:type" content="website">
+		<meta property="og:url" content="https://azoor-desu.gitlab.io/azoor-desu/knowledgebase-&amp;-notes/programming/graphics/parallel-programming.html">
+		<meta property="og:image" content="https://azoor-desu.gitlab.io/azoor-desu/lib/media/image_1707281439749_0.png">
+		<meta property="og:site_name" content="Documents">
+		<meta name="author" content="Azoor"><script async="" id="webpage-script" src="lib/scripts/webpage.js" onload="this.onload=null;this.setAttribute(&quot;loaded&quot;, &quot;true&quot;)"></script><script async="" id="minisearch-script" src="https://cdn.jsdelivr.net/npm/minisearch@6.3.0/dist/umd/index.min.js" onload="this.onload=null;this.setAttribute(&quot;loaded&quot;, &quot;true&quot;)"></script><link rel="icon" href="lib/media/favicon.png"><style>body{--line-width:40em;--line-width-adaptive:40em;--file-line-width:40em;--sidebar-width:min(20em, 80vw);--collapse-arrow-size:11px;--tree-horizontal-spacing:0.6em;--tree-vertical-spacing:0.6em;--sidebar-margin:12px}.sidebar{height:100%;min-width:calc(var(--sidebar-width) + var(--divider-width-hover));max-width:calc(var(--sidebar-width) + var(--divider-width-hover));font-size:14px;z-index:10;position:relative;overflow:hidden;transition:min-width ease-in-out,max-width ease-in-out;transition-duration:.2s;contain:size}.sidebar-left{left:0}.sidebar-right{right:0}.sidebar.is-collapsed{min-width:0;max-width:0}body.floating-sidebars .sidebar{position:absolute}.sidebar-content{height:100%;min-width:calc(var(--sidebar-width) - var(--divider-width-hover));top:0;padding:var(--sidebar-margin);padding-top:4em;line-height:var(--line-height-tight);background-color:var(--background-secondary);transition:background-color,border-right,border-left,box-shadow;transition-duration:var(--color-fade-speed);transition-timing-function:ease-in-out;position:absolute;display:flex;flex-direction:column}.sidebar:not(.is-collapsed) .sidebar-content{min-width:calc(max(100%,var(--sidebar-width)) - 3px);max-width:calc(max(100%,var(--sidebar-width)) - 3px)}.sidebar-left .sidebar-content{left:0;border-top-right-radius:var(--radius-l);border-bottom-right-radius:var(--radius-l)}.sidebar-right .sidebar-content{right:0;border-top-left-radius:var(--radius-l);border-bottom-left-radius:var(--radius-l)}.sidebar:has(.sidebar-content:empty):has(.topbar-content:empty){display:none}.sidebar-topbar{height:2em;width:var(--sidebar-width);top:var(--sidebar-margin);padding-inline:var(--sidebar-margin);z-index:1;position:fixed;display:flex;align-items:center;transition:width ease-in-out;transition-duration:inherit}.sidebar.is-collapsed .sidebar-topbar{width:calc(2.3em + var(--sidebar-margin) * 2)}.sidebar .sidebar-topbar.is-collapsed{width:0}.sidebar-left .sidebar-topbar{left:0}.sidebar-right .sidebar-topbar{right:0}.topbar-content{overflow:hidden;overflow:clip;width:100%;height:100%;display:flex;align-items:center;transition:inherit}.sidebar.is-collapsed .topbar-content{width:0;transition:inherit}.clickable-icon.sidebar-collapse-icon{background-color:transparent;color:var(--icon-color-focused);padding:0!important;margin:0!important;height:100%!important;width:2.3em!important;margin-inline:0.14em!important;position:absolute}.sidebar-left .clickable-icon.sidebar-collapse-icon{transform:rotateY(180deg);right:var(--sidebar-margin)}.sidebar-right .clickable-icon.sidebar-collapse-icon{transform:rotateY(180deg);left:var(--sidebar-margin)}.clickable-icon.sidebar-collapse-icon svg.svg-icon{width:100%;height:100%}.sidebar-section-header{margin:0 0 1em 0;text-transform:uppercase;letter-spacing:.06em;font-weight:600}body{transition:background-color var(--color-fade-speed) ease-in-out}.webpage-container{display:flex;flex-direction:row;height:100%;width:100%;align-items:stretch;justify-content:center}.document-container{opacity:1;flex-basis:100%;max-width:100%;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;transition:opacity .2s ease-in-out;contain:inline-size}.hide{opacity:0;transition:opacity .2s ease-in-out}.document-container>.markdown-preview-view{margin:var(--sidebar-margin);margin-bottom:0;width:100%;width:-webkit-fill-available;width:-moz-available;width:fill-available;background-color:var(--background-primary);transition:background-color var(--color-fade-speed) ease-in-out;border-top-right-radius:var(--window-radius,var(--radius-m));border-top-left-radius:var(--window-radius,var(--radius-m));overflow-x:hidden!important;overflow-y:auto!important;display:flex!important;flex-direction:column!important;align-items:center!important;contain:inline-size}.document-container>.markdown-preview-view>.markdown-preview-sizer{padding-bottom:80vh!important;width:100%!important;max-width:var(--line-width)!important;flex-basis:var(--line-width)!important;transition:background-color var(--color-fade-speed) ease-in-out;contain:inline-size}.markdown-rendered img:not([width]),.view-content img:not([width]){max-width:100%;outline:0}.document-container>.view-content.embed{display:flex;padding:1em;height:100%;width:100%;align-items:center;justify-content:center}.document-container>.view-content.embed>*{max-width:100%;max-height:100%;object-fit:contain}:has(> :is(.math,table)){overflow-x:auto!important}.document-container>.view-content{overflow-x:auto;contain:content;padding:0;margin:0;height:100%}.scroll-highlight{position:absolute;width:100%;height:100%;pointer-events:none;z-index:1000;background-color:hsla(var(--color-accent-hsl),.25);opacity:0;padding:1em;inset:50%;translate:-50% -50%;border-radius:var(--radius-s)}</style><script defer="">async function loadIncludes(){if("file:"!=location.protocol){let e=document.querySelectorAll("include");for(let t=0;t<e.length;t++){let o=e[t],l=o.getAttribute("src");try{const e=await fetch(l);if(!e.ok){console.log("Could not include file: "+l),o?.remove();continue}let t=await e.text(),n=document.createRange().createContextualFragment(t),i=Array.from(n.children);for(let e of i)e.classList.add("hide"),e.style.transition="opacity 0.5s ease-in-out",setTimeout((()=>{e.classList.remove("hide")}),10);o.before(n),o.remove(),console.log("Included file: "+l)}catch(e){o?.remove(),console.log("Could not include file: "+l,e);continue}}}else{if(document.querySelectorAll("include").length>0){var e=document.createElement("div");e.id="error",e.textContent="Web server exports must be hosted on an http / web server to be viewed correctly.",e.style.position="fixed",e.style.top="50%",e.style.left="50%",e.style.transform="translate(-50%, -50%)",e.style.fontSize="1.5em",e.style.fontWeight="bold",e.style.textAlign="center",document.body.appendChild(e),document.querySelector(".document-container")?.classList.remove("hide")}}}document.addEventListener("DOMContentLoaded",(()=>{loadIncludes()}));let isFileProtocol="file:"==location.protocol;function waitLoadScripts(e,t){let o=e.map((e=>document.getElementById(e+"-script"))),l=0;!function e(){let n=o[l];l++,n&&"true"!=n.getAttribute("loaded")||l<o.length&&e(),l<o.length?n.addEventListener("load",e):t()}()}</script><link rel="stylesheet" href="lib/styles/obsidian.css"><link rel="preload" href="lib/styles/other-plugins.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="lib/styles/other-plugins.css"></noscript><link rel="stylesheet" href="lib/styles/theme.css"><link rel="preload" href="lib/styles/global-variable-styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="lib/styles/global-variable-styles.css"></noscript><link rel="preload" href="lib/styles/main-styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="lib/styles/main-styles.css"></noscript></head><body class="publish css-settings-manager theme-dark show-inline-title show-ribbon outliner-plugin-dnd mk-readable-line mk-folder-lines mk-spaces-enabled mk-inline-context-enabled mk-flow-seamless"><script defer="">let theme=localStorage.getItem("theme")||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");"dark"==theme?(document.body.classList.add("theme-dark"),document.body.classList.remove("theme-light")):(document.body.classList.add("theme-light"),document.body.classList.remove("theme-dark")),window.innerWidth<480?document.body.classList.add("is-phone"):window.innerWidth<768?document.body.classList.add("is-tablet"):window.innerWidth<1024?document.body.classList.add("is-small-screen"):document.body.classList.add("is-large-screen")</script><div class="webpage-container workspace"><div class="sidebar-left sidebar"><div class="sidebar-handle"></div><div class="sidebar-topbar"><div class="topbar-content"><label class="theme-toggle-container" for="theme_toggle"><input class="theme-toggle-input" type="checkbox" id="theme_toggle"><div class="toggle-background"></div></label></div><div class="clickable-icon sidebar-collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><path d="M21 3H3C1.89543 3 1 3.89543 1 5V19C1 20.1046 1.89543 21 3 21H21C22.1046 21 23 20.1046 23 19V5C23 3.89543 22.1046 3 21 3Z"></path><path d="M10 4V20"></path><path d="M4 7H7"></path><path d="M4 10H7"></path><path d="M4 13H7"></path></svg></div></div><div class="sidebar-content"><div class="search-input-container"><input enterkeyhint="search" type="search" spellcheck="false" placeholder="Search..."><div class="search-input-clear-button" aria-label="Clear search"></div></div><include src="lib/html/file-tree.html"></include></div><script defer="">let ls = document.querySelector(".sidebar-left"); ls.classList.add("is-collapsed"); if (window.innerWidth > 768) ls.classList.remove("is-collapsed"); ls.style.setProperty("--sidebar-width", localStorage.getItem("sidebar-left-width"));</script></div><div class="document-container markdown-reading-view hide"><div class="markdown-preview-view markdown-rendered allow-fold-headings allow-fold-lists is-readable-line-width"><style id="MJX-CHTML-styles"></style><pre class="frontmatter language-yaml" tabindex="0" style="display: none;"><code class="language-yaml is-loaded"><span class="token key atrule">tags</span><span class="token punctuation">:</span> programming<span class="token punctuation">,</span> gpu<span class="token punctuation">,</span> cpp<span class="token punctuation">,</span> graphics<span class="token punctuation">,</span> opengl<span class="token punctuation">,</span> vulkan<span class="token punctuation">,</span> cuda</code><button class="copy-code-button">Copy</button></pre><div class="markdown-preview-sizer markdown-preview-section"><h1 class="page-title heading inline-title" id="OpenGL Programming">OpenGL Programming</h1><div class="heading-wrapper"><div class="heading-children"><div><ul>
+<li data-line="0" dir="auto"></li>
+</ul></div></div></div><div class="heading-wrapper"><h1 data-heading="Vulkan Programming" dir="auto" class="heading" id="Vulkan_Programming">Vulkan Programming</h1><div class="heading-children"><div><ul>
+<li data-line="0" dir="auto">Vulkan Best Practices <a rel="noopener" class="external-link" href="https://developer.nvidia.com/blog/vulkan-dos-donts/" target="_blank">https://developer.nvidia.com/blog/vulkan-dos-donts/</a></li>
+<li data-line="1" dir="auto">Cutting edge shit: Mesh Shaders <a rel="noopener" class="external-link" href="https://developer.nvidia.com/blog/introduction-turing-mesh-shaders/" target="_blank">https://developer.nvidia.com/blog/introduction-turing-mesh-shaders/</a></li>
+<li data-line="2" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>
+<h2 data-heading="Pipeline" dir="auto" class="heading" id="Pipeline">Pipeline</h2>
+<ul>
+<li data-line="3" dir="auto">Intro <a class="internal-link" data-href="attachments/Lecture_Vulkan_Intro_1707281667185_0.pdf" href="attachments/lecture_vulkan_intro_1707281667185_0.pdf" target="_self" rel="noopener">Lecture Vulkan Intro.pdf</a></li>
+<li data-line="4" dir="auto"><div alt="image.png" src="lib/media/image_1707281439749_0.png" class="internal-embed media-embed image-embed is-loaded" style="width: 680px; max-width: 100%;"><img alt="image.png" src="lib/media/image_1707281439749_0.png" style="width: 680px; max-width: 100%;"></div></li>
+<li data-line="5" dir="auto"><div alt="image.png" src="lib/media/image_1707281457801_0.png" class="internal-embed media-embed image-embed is-loaded" style="width: 683px; max-width: 100%;"><img alt="image.png" src="lib/media/image_1707281457801_0.png" style="width: 683px; max-width: 100%;"></div></li>
+<li data-line="6" dir="auto"><div alt="image.png" src="lib/media/image_1707281471813_0.png" class="internal-embed media-embed image-embed is-loaded" style="width: 684px; max-width: 100%;"><img alt="image.png" src="lib/media/image_1707281471813_0.png" style="width: 684px; max-width: 100%;"></div></li>
+<li data-line="7" dir="auto"></li>
+</ul>
+</li>
+</ul></div></div></div><div class="heading-wrapper"><h1 data-heading="CUDA Programming" dir="auto" class="heading" id="CUDA_Programming">CUDA Programming</h1><div class="heading-children"><div><ul>
+<li data-line="0" dir="auto">HOST: The CPU</li>
+<li data-line="1" dir="auto">DEVICE: The GPU</li>
+<li data-line="2" dir="auto">
+<table>
+<thead>
+<tr>
+<th>Function Signature</th>
+<th>Executed on the:</th>
+<th>Only callable from:</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>__device__ void DeviceFunc()</td>
+<td>device (gpu)</td>
+<td>device (gpu)</td>
+</tr>
+<tr>
+<td>__host__ void HostFunc()</td>
+<td>host (cpu)</td>
+<td>host (cpu)</td>
+</tr>
+<tr>
+<td>__global__ void KernelFunc()</td>
+<td>device (gpu)</td>
+<td>host (cpu)</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li data-line="7" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>
+<h2 data-heading="Host Code" dir="auto" class="heading" id="Host_Code">Host Code</h2>
+<ul>
+<li data-line="8" dir="auto">Example:</li>
+<li data-line="9" dir="auto">cpp code block below:</li>
+</ul>
+<pre class="language-cpp" tabindex="0"><code class="language-cpp is-loaded">	<span class="token keyword">void</span> <span class="token function">vecAdd</span><span class="token punctuation">(</span><span class="token keyword">float</span><span class="token operator">*</span> h_A<span class="token punctuation">,</span> <span class="token keyword">float</span><span class="token operator">*</span> h_B<span class="token punctuation">,</span> <span class="token keyword">float</span><span class="token operator">*</span> h_C<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">)</span>
+	<span class="token punctuation">{</span>
+	<span class="token comment">// d_A, d_B, d_C allocations and copies omitted </span>
+	<span class="token comment">// Run ceil(n/256.0) blocks of 256 threads each</span>
+	vecAddKernel\<span class="token operator">&lt;</span>\<span class="token operator">&lt;</span>\<span class="token operator">&lt;</span><span class="token function">ceil</span><span class="token punctuation">(</span>n<span class="token operator">/</span><span class="token number">256.0</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">256</span>\<span class="token operator">&gt;</span>\<span class="token operator">&gt;</span>\<span class="token operator">&gt;</span><span class="token punctuation">(</span>d_A<span class="token punctuation">,</span> d_B<span class="token punctuation">,</span> d_C<span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	```
+</code><button class="copy-code-button">Copy</button></pre>
+</li>
+<li data-line="18" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>
+<h2 data-heading="Device Code" dir="auto" class="heading" id="Device_Code">Device Code</h2>
+<ul>
+<li data-line="19" dir="auto"></li>
+</ul>
+</li>
+<li data-line="20" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>
+<h2 data-heading="Kernel Code" dir="auto" class="heading" id="Kernel_Code">Kernel Code</h2>
+<ul>
+<li data-line="21" dir="auto">All threads on a block executes the SAME kernel code.</li>
+</ul>
+</li>
+<li data-line="22" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>
+<h2 data-heading="Compilation" dir="auto" class="heading" id="Compilation">Compilation</h2>
+<ul>
+<li data-line="23" dir="auto">sth sth NVCC and GCC or sth idk</li>
+<li data-line="24" dir="auto">has to do sth with __host__ and __device__</li>
+</ul>
+</li>
+<li data-line="25" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>
+<h2 data-heading="Grids and Blocks and Threads and Warps" dir="auto" class="heading" id="Grids_and_Blocks_and_Threads_and_Warps">Grids and Blocks and Threads and Warps</h2>
+<ul>
+<li data-line="26" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>
+<h3 data-heading="Heirarchy" dir="auto" class="heading" id="Heirarchy">Heirarchy</h3>
+<ul>
+<li data-line="27" dir="auto">Threads: Lowest level of compute. One thread = one running guy.</li>
+<li data-line="28" dir="auto">Warps: Usually groups of 32 threads. Warps are the smallest unit of execution a GPU can do. All threads in warps execute the same thing, but on different data.</li>
+<li data-line="29" dir="auto">Blocks: Groups of THREADS, not warps.</li>
+<li data-line="30" dir="auto">Grids: Groups of BLOCKS.</li>
+</ul>
+</li>
+<li data-line="31" dir="auto">
+<p>Grids are the BIG picture. There is a grid of BLOCKS. Each block contains THREADS.</p>
+</li>
+<li data-line="32" dir="auto">
+<p>Each level can be 1D, 2D or 3D. Denoted as dim(x,x,x).</p>
+</li>
+<li data-line="33" dir="auto">
+<p>x,y,z follow the top-left origin format. Like MS Excel.</p>
+</li>
+<li data-line="34" dir="auto">
+<p>x: COLUMN</p>
+</li>
+<li data-line="35" dir="auto">
+<p>y: ROW</p>
+</li>
+<li data-line="36" dir="auto">
+<p>z: DEPTH (idk go in or come out)</p>
+</li>
+<li data-line="37" dir="auto">
+<p></p><div alt="image.png" src="lib/media/image_1705031096910_0.png" class="internal-embed media-embed image-embed is-loaded"><img alt="image.png" src="lib/media/image_1705031096910_0.png"></div><br>
+Example:<br>
+Grid of dim(2,2,1) blocks.<br>
+each block has dim(2,2,4) threads.<br>
+Total threads: (2*2*1)*(2*2*4) = 64 threads<p></p>
+</li>
+<li data-line="42" dir="auto">
+<p>Example of kernel code that uses grid/block in a 2D format:</p>
+<pre class="language-cpp" tabindex="0"><code class="language-cpp is-loaded"><span class="token comment">// Scale every pixel value by 2.0</span>
+__global__ 
+<span class="token keyword">void</span> <span class="token function">PictureKernel</span><span class="token punctuation">(</span><span class="token keyword">float</span><span class="token operator">*</span> d_Pin<span class="token punctuation">,</span> <span class="token keyword">float</span><span class="token operator">*</span> d_Pout<span class="token punctuation">,</span> <span class="token keyword">int</span> height<span class="token punctuation">,</span> <span class="token keyword">int</span> width<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token comment">// Calculate the row # of the d_Pin and d_Pout element</span>
+<span class="token keyword">int</span> Row <span class="token operator">=</span> blockIdx<span class="token punctuation">.</span>y<span class="token operator">*</span>blockDim<span class="token punctuation">.</span>y <span class="token operator">+</span> threadIdx<span class="token punctuation">.</span>y<span class="token punctuation">;</span>
+
+<span class="token comment">// Calculate the column # of the d_Pin and d_Pout element</span>
+<span class="token keyword">int</span> Col <span class="token operator">=</span> blockIdx<span class="token punctuation">.</span>x<span class="token operator">*</span>blockDim<span class="token punctuation">.</span>x <span class="token operator">+</span> threadIdx<span class="token punctuation">.</span>x<span class="token punctuation">;</span>
+
+<span class="token comment">// each thread computes one element of d_Pout if in range</span>
+<span class="token keyword">if</span>  <span class="token punctuation">{</span>
+	d_Pout<span class="token punctuation">[</span>Row<span class="token operator">*</span>width<span class="token operator">+</span>Col<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">2.0</span><span class="token operator">*</span>d_Pin<span class="token punctuation">[</span>Row<span class="token operator">*</span>width<span class="token operator">+</span>Col<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code><button class="copy-code-button">Copy</button></pre>
+</li>
+<li data-line="59" dir="auto">
+<p>Example of configuring the grid and block dim sizes before launching the above kernel code:</p>
+<pre class="language-cpp" tabindex="0"><code class="language-cpp is-loaded"><span class="token comment">// assume that the picture is m × n, </span>
+<span class="token comment">// m pixels in y dimension and n pixels in x dimension</span>
+<span class="token comment">// input d_Pin has been allocated on and copied to device</span>
+<span class="token comment">// output d_Pout has been allocated on device</span>
+dim3 <span class="token function">DimGrid</span><span class="token punctuation">(</span><span class="token punctuation">(</span>n<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">16</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>m<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">16</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+dim3 <span class="token function">DimBlock</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+PictureKernel\<span class="token operator">&lt;</span>\<span class="token operator">&lt;</span>\<span class="token operator">&lt;</span>DimGrid<span class="token punctuation">,</span>DimBlock\<span class="token operator">&gt;</span>\<span class="token operator">&gt;</span>\<span class="token operator">&gt;</span><span class="token punctuation">(</span>d_Pin<span class="token punctuation">,</span> d_Pout<span class="token punctuation">,</span> m<span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code><button class="copy-code-button">Copy</button></pre>
+</li>
+<li data-line="69" dir="auto">
+<p></p><div alt="image.png" src="lib/media/image_1705032054961_0.png" class="internal-embed media-embed image-embed is-loaded" style="width: 555px; max-width: 100%;"><img alt="image.png" src="lib/media/image_1705032054961_0.png" style="width: 555px; max-width: 100%;"></div><br>
+<em>Using pre-defined block size (2D 16x16) to make a grid that can cover all pixels of an image. Some parts of some blocks may not be used, so bounds checking need to be considered</em><p></p>
+</li>
+</ul>
+</li>
+<li data-line="71" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>
+<h2 data-heading="Thread Scheduling" dir="auto" class="heading" id="Thread_Scheduling">Thread Scheduling</h2>
+<ul>
+<li data-line="72" dir="auto">Each GPU has a number of SMs (Streaming Multiprocessors).</li>
+<li data-line="73" dir="auto">Each SM can take up to a certain number of threads, depending on GPU. (Fermi takes 1536)</li>
+<li data-line="74" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>ALL SMs can only take up to 8 blocks at a time. Blocks are user-defined during kernel code execution.
+<ul>
+<li data-line="75" dir="auto"><div alt="image.png" src="lib/media/image_1705035405002_0.png" class="internal-embed media-embed image-embed is-loaded"><img alt="image.png" src="lib/media/image_1705035405002_0.png"></div></li>
+</ul>
+</li>
+<li data-line="76" dir="auto">Something something warps are smallest unit of execution. Each warp does 32 threads, until newer GPUs change that number.</li>
+<li data-line="77" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>
+<h3 data-heading="Optimizing SM and thread count" dir="auto" class="heading" id="Optimizing_SM_and_thread_count">Optimizing SM and thread count</h3>
+<ul>
+<li data-line="78" dir="auto">Try to squeeze the max amt of threads into an SM as possible, with the thread count limit + block count limit in consideration.</li>
+<li data-line="79" dir="auto">For Fermi gpu, should i use 8x8, 16x16 or 32x32 blocks? (Fermi: 1536 threads per SM)</li>
+<li data-line="80" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>8x8
+<ul>
+<li data-line="81" dir="auto">Threads: 8*8= 64 threads per block</li>
+<li data-line="82" dir="auto">Could fit 1536 / 64 = 64 blocks</li>
+<li data-line="83" dir="auto">But max can fit 8 blocks</li>
+<li data-line="84" dir="auto">So each SM can hold 8 blocks, which is 512 threads out of 1536 threads utilized.</li>
+</ul>
+</li>
+<li data-line="85" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>16x16
+<ul>
+<li data-line="86" dir="auto">Threads: 16*16= 256 threads per block</li>
+<li data-line="87" dir="auto">Could fit 1536 / 256 = 6 blocks</li>
+<li data-line="88" dir="auto">All of 6 blocks can fit into an SM's limit of 8 blocks</li>
+<li data-line="89" dir="auto">So each SM can hold 6 blocks, which is 1536 threads out of 1536 threads utilized.</li>
+</ul>
+</li>
+<li data-line="90" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>32x32
+<ul>
+<li data-line="91" dir="auto">Threads: 32*32= 1024 threads per block</li>
+<li data-line="92" dir="auto">Could fit 1536 / 1024 = 1.5 blocks</li>
+<li data-line="93" dir="auto">All of 1.5 blocks can fit. But I can only choose 1 or 2 blocks to put in, so i can only put in max of 1 block.</li>
+<li data-line="94" dir="auto">So 1024 threads out of 1536 threads utilized.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li data-line="95" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>
+<h2 data-heading="Memory" dir="auto" class="heading" id="Memory">Memory</h2>
+<ul>
+<li data-line="96" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><div alt="image.png" src="lib/media/image_1705462227500_0.png" class="internal-embed media-embed image-embed is-loaded"><img alt="image.png" src="lib/media/image_1705462227500_0.png"></div><br>
+Overview of GPU memory layout (shared memory probably CUDA specific only)
+<ul>
+<li data-line="98" dir="auto">&gt; There exists an "invisible" cache between the Global Memory and Block. Inaccessible to programmer.</li>
+</ul>
+</li>
+<li data-line="99" dir="auto">Each thread takes a LONG time (maybe 50-100 cycles) to read memory</li>
+<li data-line="100" dir="auto"><div alt="image.png" src="lib/media/image_1705462375816_0.png" class="internal-embed media-embed image-embed is-loaded"><img alt="image.png" src="lib/media/image_1705462375816_0.png"></div><br>
+Declaring CUDA variables</li>
+<li data-line="102" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>
+<h3 data-heading="Memory access technique" dir="auto" class="heading" id="Memory_access_technique">Memory access technique</h3>
+<ul>
+<li data-line="103" dir="auto">Works on the principle that:</li>
+<li data-line="104" dir="auto"><del>Threads that are going to do similar work are grouped together called "tiles".</del><br>
+logseq.order-list-type:: number</li>
+<li data-line="106" dir="auto">GPU memory accessing is very slow, but bandwidth is pretty high. So a single, large memory transfer is better than many, small memory transfers<br>
+logseq.order-list-type:: number</li>
+<li data-line="108" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>Data needs to be transferred from Global Memory to On-Chip memory, for each set of threads to do processing. On-Chip (Shared) memory can't take that much data at once. Each set of memory to load is called a "tile".<br>
+logseq.order-list-type:: number
+<ul>
+<li data-line="110" dir="auto"><div alt="image.png" src="lib/media/image_1705463747338_0.png" class="internal-embed media-embed image-embed is-loaded"><img alt="image.png" src="lib/media/image_1705463747338_0.png"></div></li>
+</ul>
+</li>
+<li data-line="111" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><div alt="image.png" src="lib/media/image_1705463548810_0.png" class="internal-embed media-embed image-embed is-loaded"><img alt="image.png" src="lib/media/image_1705463548810_0.png"></div>
+<ul>
+<li data-line="112" dir="auto">Load all data for all these threads, then wait for them to finish. Depends on the slowest thread. Do not load in data for next "tile" yet, or shit happens. This is called "Barrier Synchronization"</li>
+<li data-line="113" dir="auto">Once all threads are finished, then load in the next tile of data to be processed by the same set of threads.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li data-line="114" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>
+<h2 data-heading="Warps" dir="auto" class="heading" id="Warps">Warps</h2>
+<ul>
+<li data-line="115" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>DISCLAIMER: DO NOT assume threads in warps OR warps themselves are ordered. THEY ARE UNORDERED.
+<ul>
+<li data-line="116" dir="auto">Do not "do xxx only on specific warps" to try to avoid control divergence, because there is no way to accurately pinpoint warps.</li>
+<li data-line="117" dir="auto">For this, use __syncthreads() to let them all sync.</li>
+</ul>
+</li>
+<li data-line="118" dir="auto">All threads in warp SHOULD take the same conditional branches and same number of iterations etc, for performance.</li>
+<li data-line="119" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>It is possible for some threads in a warp to take a different path
+<ul>
+<li data-line="120" dir="auto">However, how the GPU does this is that it executes each path SYNCHRONOUSLY. So if we have a simple if-else branch and the threads in a warp goes down both paths, the GPU will have to do ONE path first, THEN the other path. So x2 the time.</li>
+<li data-line="121" dir="auto">With more branches, the time taken will increase, as long as ONE thread in the warp needs to go down a unique path.</li>
+</ul>
+</li>
+<li data-line="122" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>Example: 
+<ul>
+<li data-line="123" dir="auto"><div alt="image.png" src="lib/media/image_1705635552018_0.png" class="internal-embed media-embed image-embed is-loaded" style="width: 579px; max-width: 100%;"><img alt="image.png" src="lib/media/image_1705635552018_0.png" style="width: 579px; max-width: 100%;"></div></li>
+<li data-line="124" dir="auto">First one: Checking if thread index is xxx. Since in each warp (unknown number of threads in a warp), some threads will be &lt;2 and some are &gt;2, there will be at least 1 warp that will take 2 paths. Hence there is a control divergence, not good.</li>
+<li data-line="125" dir="auto">Second one: Checking if block index is xxx instead. Since each block nicely fits a certain number of warps (i think??), there are no threads in the warp that have a different evaluation of blockid.x &gt; 2. Hence all warps only have 1 path of execution. Grape!</li>
+</ul>
+</li>
+<li data-line="126" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>
+<h3 data-heading="About warp and block sizes" dir="auto" class="heading" id="About_warp_and_block_sizes">About warp and block sizes</h3>
+<ul>
+<li data-line="127" dir="auto">According to this <a data-tooltip-position="top" aria-label="https://stackoverflow.com/questions/31279505/conversion-from-block-dimensions-to-warps-in-cuda" rel="noopener" class="external-link" href="https://stackoverflow.com/questions/31279505/conversion-from-block-dimensions-to-warps-in-cuda" target="_blank">SO Thread</a>:</li>
+<li data-line="128" dir="auto">&gt; A blocksize being not a multiple of 32 will rounds up to the nearest multiple, even if you request fewer threads. See GPU Optimization Fundamentals presentation of Cliff Woolley from the NVIDIA Developer Technology Group has interesting hints about performance.</li>
+<li data-line="129" dir="auto">So, block size isn't fully controllable by the programmer. It defaults to a multiple of warp size.</li>
+</ul>
+</li>
+<li data-line="130" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><div alt="image.png" src="lib/media/image_1705636135948_0.png" class="internal-embed media-embed image-embed is-loaded" style="width: 508px; max-width: 100%;"><img alt="image.png" src="lib/media/image_1705636135948_0.png" style="width: 508px; max-width: 100%;"></div> 
+<ul>
+<li data-line="131" dir="auto"><div alt="image.png" src="lib/media/image_1705636118339_0.png" class="internal-embed media-embed image-embed is-loaded" style="width: 504px; max-width: 100%;"><img alt="image.png" src="lib/media/image_1705636118339_0.png" style="width: 504px; max-width: 100%;"></div><br>
+1 out of 32 warps got control divergence. This is due to the boundary check, which is necessary.</li>
+<li data-line="133" dir="auto"><div alt="image.png" src="lib/media/image_1705636514141_0.png" class="internal-embed media-embed image-embed is-loaded"><img alt="image.png" src="lib/media/image_1705636514141_0.png"></div></li>
+</ul>
+</li>
+<li data-line="134" dir="auto">Perf impact of &gt;3% is calculated by 1/32</li>
+</ul>
+</li>
+<li data-line="135" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>
+<h2 data-heading="Memory access: DRAM Bursting" dir="auto" class="heading" id="Memory_access:_DRAM_Bursting">Memory access: DRAM Bursting</h2>
+<ul>
+<li data-line="136" dir="auto">TLDR: How much shit gets loaded at once from RAM</li>
+<li data-line="137" dir="auto">DRAM refers to DDR2/3/4 etc, or GDDR 3/4/5 etc</li>
+<li data-line="138" dir="auto">Accessing DRAM is slow af</li>
+<li data-line="139" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>The higher the DDR gen, the slower it gets (???)
+<ul>
+<li data-line="140" dir="auto"><div alt="image.png" src="lib/media/image_1706240020979_0.png" class="internal-embed media-embed image-embed is-loaded"><img alt="image.png" src="lib/media/image_1706240020979_0.png"></div></li>
+</ul>
+</li>
+<li data-line="141" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>But each generation loads more stuff
+<ul>
+<li data-line="142" dir="auto"><div alt="image.png" src="lib/media/image_1706240062451_0.png" class="internal-embed media-embed image-embed is-loaded" style="width: 695px; max-width: 100%;"><img alt="image.png" src="lib/media/image_1706240062451_0.png" style="width: 695px; max-width: 100%;"></div></li>
+</ul>
+</li>
+<li data-line="143" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>Optimized loading of data with fewer calls: 
+<ul>
+<li data-line="144" dir="auto"><div alt="image.png" src="lib/media/image_1706240143354_0.png" class="internal-embed media-embed image-embed is-loaded" style="width: 560px; max-width: 100%;"><img alt="image.png" src="lib/media/image_1706240143354_0.png" style="width: 560px; max-width: 100%;"></div></li>
+<li data-line="145" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>Conversely, not grape loading: 
+<ul>
+<li data-line="146" dir="auto"><div alt="image.png" src="lib/media/image_1706240173662_0.png" class="internal-embed media-embed image-embed is-loaded" style="width: 543px; max-width: 100%;"><img alt="image.png" src="lib/media/image_1706240173662_0.png" style="width: 543px; max-width: 100%;"></div></li>
+</ul>
+</li>
+<li data-line="147" dir="auto"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li data-line="148" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>
+<h2 data-heading="Atomic Operations" dir="auto" class="heading" id="Atomic_Operations">Atomic Operations</h2>
+<ul>
+<li data-line="149" dir="auto">TLDR: Acts like a semaphore, makes sure there's no data race.</li>
+<li data-line="150" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>Additional tip from memory access: If u have 4 "threads", and u want to process a block of data, don't split the block of data by 4. Instead, stagger the split like so: 
+<ul>
+<li data-line="151" dir="auto"><div alt="image.png" src="lib/media/image_1706239647408_0.png" class="internal-embed media-embed image-embed is-loaded" style="width: 569px; max-width: 100%;"><img alt="image.png" src="lib/media/image_1706239647408_0.png" style="width: 569px; max-width: 100%;"></div><br>
+This ensures that every time all 4 threads need to do processing, only 1/4 of the chunk is loaded instead of the first bit of every chunk. (Which means all 4 chunks have to be loaded for processing to be done instead of just 1 chunk)</li>
+<li data-line="153" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>Example of strided access pattern: 
+<ul>
+<li data-line="154" dir="auto"><div alt="image.png" src="lib/media/image_1706239738455_0.png" class="internal-embed media-embed image-embed is-loaded" style="width: 545px; max-width: 100%;"><img alt="image.png" src="lib/media/image_1706239738455_0.png" style="width: 545px; max-width: 100%;"></div></li>
+</ul>
+</li>
+<li data-line="155" dir="auto">assets:///C%3A/PERSONAL_FILES/LogseqNotes/assets/image_1706239647408_0.png</li>
+</ul>
+</li>
+<li data-line="156" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>Atomic operations are SLOW, because they are "blocking". Nothing else can happen until the atomic operation finishes. This is made worse if there are multiple atomic ops in succession. Additionally, EACH memory access (read/write) takes about 1000 cycles to access the global DRAM! 
+<ul>
+<li data-line="157" dir="auto"><div alt="image.png" src="lib/media/image_1706240348823_0.png" class="internal-embed media-embed image-embed is-loaded" style="width: 662px; max-width: 100%;"><img alt="image.png" src="lib/media/image_1706240348823_0.png" style="width: 662px; max-width: 100%;"></div></li>
+</ul>
+</li>
+<li data-line="158" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>Solution? Cache. If the atomic operation accesses something already in the cache, the latency drops.
+<ul>
+<li data-line="159" dir="auto">Global DRAM: Slow. 1000-ish cycles.</li>
+<li data-line="160" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>L2 Cache: About 1/10 of the global DRAM latency (for Fermi).
+<ul>
+<li data-line="161" dir="auto">All blocks can access. Free performance boost globally.</li>
+</ul>
+</li>
+<li data-line="162" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>Shared Memory: Very fast.
+<ul>
+<li data-line="163" dir="auto">But only on a per-block basis. Other blocks can't use this memory. Requires some work to implement in code.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li data-line="164" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>
+<h2 data-heading="Privatization" dir="auto" class="heading" id="Privatization">Privatization</h2>
+<ul>
+<li data-line="165" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>Idea: When doing atomic operations over many threads e.g. 100 threads, 10 blocks, that's 100 sequential operations that can't be parallelized. (Each atomic op, need to wait for ALL 100 threads to finish) Not grape, cos of memory access and wasted time waiting. So, we try to parallelize this bitch.
+<ul>
+<li data-line="166" dir="auto">Firstly, instead of doing an atomic operation on the global memory level (the L2 cache level), you do it on the Shared memory level instead.</li>
+<li data-line="167" dir="auto">You create a shared buffer for each block, and then read the global data from global DRAM but store the results in Shared memory buffer. This way, all 10 blocks can run their atomic operations in parallel.</li>
+<li data-line="168" dir="auto">After all blocks are finished (using <code>__syncthreads()</code>, you then do the atomic addition of all these buffers in each block with another set of atomic operations.</li>
+<li data-line="169" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>Instead of all threads in every block trying to do atomic ops individually on the same data... 
+<ul>
+<li data-line="170" dir="auto"><div alt="image.png" src="lib/media/image_1706241553845_0.png" class="internal-embed media-embed image-embed is-loaded" style="width: 350px; max-width: 100%;"><img alt="image.png" src="lib/media/image_1706241553845_0.png" style="width: 350px; max-width: 100%;"></div><br>
+We have each block do their own set of atomic ops on their own, then atomic add these buffers together on the 2nd pass </li>
+<li data-line="172" dir="auto"><div alt="image.png" src="lib/media/image_1706241608388_0.png" class="internal-embed media-embed image-embed is-loaded" style="width: 353px; max-width: 100%;"><img alt="image.png" src="lib/media/image_1706241608388_0.png" style="width: 353px; max-width: 100%;"></div></li>
+</ul>
+</li>
+<li data-line="173" dir="auto"></li>
+</ul>
+</li>
+<li data-line="174" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>Pros and Cons:
+<ul>
+<li data-line="175" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>PROS:
+<ul>
+<li data-line="176" dir="auto">Yay parallel!</li>
+</ul>
+</li>
+<li data-line="177" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>CONS:
+<ul>
+<li data-line="178" dir="auto">Have to set up stuff to do this.. Not worth if amount of atomic ops is tiny.</li>
+<li data-line="179" dir="auto">Only works if the order of operation of every atomic op does not matter. If order matters, then this shit fails.</li>
+<li data-line="180" dir="auto">Block-based shared memory buffer should remain small enough to fit in the shared memory. So data that is too big is unusable.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li data-line="181" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>
+<h2 data-heading="Parallel Programming Optimizations" dir="auto" class="heading" id="Parallel_Programming_Optimizations">Parallel Programming Optimizations</h2>
+<ul>
+<li data-line="182" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>
+<h3 data-heading="Convolution" dir="auto" class="heading" id="Convolution">Convolution</h3>
+<ul>
+<li data-line="183" dir="auto">Basics of image/audio processing</li>
+<li data-line="184" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>takes a range/area of data in an array, and does processing on the data + the data around it
+<ul>
+<li data-line="185" dir="auto">e.g. Gaussian blur or whatever</li>
+</ul>
+</li>
+<li data-line="186" dir="auto"><div alt="image.png" src="lib/media/image_1706671942740_0.png" class="internal-embed media-embed image-embed is-loaded" style="width: 502px; max-width: 100%;"><img alt="image.png" src="lib/media/image_1706671942740_0.png" style="width: 502px; max-width: 100%;"></div><br>
+N: The data to do processing on<br>
+M: The standard MASK to be applied to every computation<br>
+P: Output after slapping all the Ns into M</li>
+<li data-line="190" dir="auto"><div alt="image.png" src="lib/media/image_1706672027691_0.png" class="internal-embed media-embed image-embed is-loaded"><img alt="image.png" src="lib/media/image_1706672027691_0.png"></div><br>
+If at the edge, there will be "ghost cells"</li>
+<li data-line="192" dir="auto"><div alt="image.png" src="lib/media/image_1706672140030_0.png" class="internal-embed media-embed image-embed is-loaded" style="width: 440px; max-width: 100%;"><img alt="image.png" src="lib/media/image_1706672140030_0.png" style="width: 440px; max-width: 100%;"></div><br>
+Small optimization: use a local register to store data instead of storing data straight back into the array.<br>
+Instead of storing into out[xxx], don't do that cos accessing that guy takes quite a huge amount of cycles, esp in the double for loop</li>
+<li data-line="195" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>
+<h2 data-heading="Tiled Convolution" dir="auto" class="heading" id="Tiled_Convolution">Tiled Convolution</h2>
+<ul>
+<li data-line="196" dir="auto"><a class="internal-link" data-href="../assets/Lecture-Parallel_Patterns_1706676564137_0.pptx" href="../assets/Lecture-Parallel_Patterns_1706676564137_0.pptx" target="_self" rel="noopener">Lecture-Parallel Patterns.pptx</a></li>
+<li data-line="197" dir="auto">TLDR: Optimize the loading of elements into threads, minimize the amount of loading needed to be done.</li>
+<li data-line="198" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>Simplified example:
+<ul>
+<li data-line="199" dir="auto"><div alt="image.png" src="lib/media/image_1709465360556_0.png" class="internal-embed media-embed image-embed is-loaded" style="width: 580px; max-width: 100%;"><img alt="image.png" src="lib/media/image_1709465360556_0.png" style="width: 580px; max-width: 100%;"></div><br>
+<strong>Context</strong>: For each of these elements, we take the neighboring 4 other elements to do processing, then plonk the value into that one element we are processing.<br>
+<strong>Note</strong>: Each computation is denoted by T0, T1, etc. Could be done in parallel on diff threads, could be done in sequence. For now I assume is on different threads.<br>
+<strong>Observation</strong>: When computing elements 0 to 4, the element 2 is loaded for all of them. Therefore, when we perform computations on elements 0 to 4, element 2 SHOULD be loaded (in shared memory) for all these threads. Then, element 2 don't need to be loaded anymore afterwards.</li>
+</ul>
+</li>
+<li data-line="203" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>
+<h3 data-heading="Tiled Convolution design" dir="auto" class="heading" id="Tiled_Convolution_design">Tiled Convolution design</h3>
+<ul>
+<li data-line="204" dir="auto"><div alt="image.png" src="lib/media/image_1709465766033_0.png" class="internal-embed media-embed image-embed is-loaded" style="width: 583px; max-width: 100%;"><img alt="image.png" src="lib/media/image_1709465766033_0.png" style="width: 583px; max-width: 100%;"></div></li>
+<li data-line="205" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>Design 1:
+<ul>
+<li data-line="206" dir="auto">
+<p></p><div alt="image.png" src="lib/media/image_1709474115211_0.png" class="internal-embed media-embed image-embed is-loaded" style="width: 427px; max-width: 100%;"><img alt="image.png" src="lib/media/image_1709474115211_0.png" style="width: 427px; max-width: 100%;"></div><br>
+Number of threads to work with == output (block) size.<br>
+When loading in the input cells into shared memory, each thread should load 1, but that won't be enough cos the side pieces has nobody to load them. So, during loading, some threads will have to load the outer cells too.<p></p>
+<p>After loading, there should be 1 thread for 1 output tile to do processing. Each thread dumps the output directly into their respective output cells. Done.</p>
+</li>
+</ul>
+</li>
+<li data-line="211" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>Design 2:
+<ul>
+<li data-line="212" dir="auto">
+<p>Similar to design 1.<br>
+Number of threads to work with == input (block + a few more) size.<br>
+When loading in the input cells, is straight forward. 1 thread loads 1 cell.</p>
+<p>When processing, there should be 1 thread for 1 output tile to do processing. In fact, there's more than enough. The threads on the "outside" borders won't need to compute anything. Each thread writes to their respective output tiles (if it did processing) and that's it.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li data-line="217" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>
+<h1 data-heading="Other notes" dir="auto" class="heading" id="Other_notes">Other notes</h1>
+<ul>
+<li data-line="218" dir="auto"><a rel="noopener" class="external-link" href="https://stackoverflow.com/questions/2392250/understanding-cuda-grid-dimensions-block-dimensions-and-threads-organization-s" target="_blank">https://stackoverflow.com/questions/2392250/understanding-cuda-grid-dimensions-block-dimensions-and-threads-organization-s</a> blocks, threads and shit organization</li>
+<li data-line="219" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>what is warp <a rel="noopener" class="external-link" href="https://softwareengineering.stackexchange.com/questions/369960/definition-and-usage-of-warp-in-parallel-gpu-programming" target="_blank">https://softwareengineering.stackexchange.com/questions/369960/definition-and-usage-of-warp-in-parallel-gpu-programming</a>
+<ul>
+<li data-line="220" dir="auto">what is wavefront</li>
+</ul>
+</li>
+<li data-line="221" dir="auto">If else in GPU, but gpu has no branch prediction. <a rel="noopener" class="external-link" href="https://stackoverflow.com/questions/45734138/why-an-if-else-statement-in-gpus-code-will-cut-the-performance-in-half" target="_blank">https://stackoverflow.com/questions/45734138/why-an-if-else-statement-in-gpus-code-will-cut-the-performance-in-half</a></li>
+<li data-line="222" dir="auto"><a rel="noopener" class="external-link" href="https://developer.samsung.com/galaxy-gamedev/resources/articles/gpu-framebuffer.html" target="_blank">https://developer.samsung.com/galaxy-gamedev/resources/articles/gpu-framebuffer.html</a> gpu memory and tiling</li>
+</ul>
+</li>
+</ul></div><div class="mod-footer"></div></div></div></div></div></div><div class="sidebar-right sidebar"><div class="sidebar-handle"></div><div class="sidebar-topbar"><div class="topbar-content"></div><div class="clickable-icon sidebar-collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><path d="M21 3H3C1.89543 3 1 3.89543 1 5V19C1 20.1046 1.89543 21 3 21H21C22.1046 21 23 20.1046 23 19V5C23 3.89543 22.1046 3 21 3Z"></path><path d="M10 4V20"></path><path d="M4 7H7"></path><path d="M4 10H7"></path><path d="M4 13H7"></path></svg></div></div><div class="sidebar-content"><div class="tree-container mod-root nav-folder tree-item outline-tree" data-depth="0"><div class="tree-header"><span class="sidebar-section-header">Table Of Contents</span><button class="clickable-icon collapse-tree-button is-collapsed" aria-label="Collapse All"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></svg></button></div><div class="tree-scroll-area tree-item-children nav-folder-children"><div class="tree-item mod-tree-folder nav-folder mod-collapsible is-collapsed" style="display: none;"></div><div class="tree-item" data-depth="1"><a class="tree-link" href="knowledgebase-&amp;-notes/programming/graphics/parallel-programming.html#OpenGL Programming"><div class="tree-item-contents heading-link" heading-name="OpenGL Programming"><span class="tree-item-title">OpenGL Programming</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="1"><a class="tree-link" href="knowledgebase-&amp;-notes/programming/graphics/parallel-programming.html#Vulkan_Programming"><div class="tree-item-contents heading-link" heading-name="Vulkan Programming"><span class="tree-item-title">Vulkan Programming</span></div></a><div class="tree-item-children nav-folder-children"><div class="tree-item" data-depth="2"><a class="tree-link" href="knowledgebase-&amp;-notes/programming/graphics/parallel-programming.html#Pipeline"><div class="tree-item-contents heading-link" heading-name="Pipeline"><span class="tree-item-title">Pipeline</span></div></a><div class="tree-item-children nav-folder-children"></div></div></div></div><div class="tree-item" data-depth="1"><a class="tree-link" href="knowledgebase-&amp;-notes/programming/graphics/parallel-programming.html#CUDA_Programming"><div class="tree-item-contents heading-link" heading-name="CUDA Programming"><span class="tree-item-title">CUDA Programming</span></div></a><div class="tree-item-children nav-folder-children"><div class="tree-item" data-depth="2"><a class="tree-link" href="knowledgebase-&amp;-notes/programming/graphics/parallel-programming.html#Host_Code"><div class="tree-item-contents heading-link" heading-name="Host Code"><span class="tree-item-title">Host Code</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-link" href="knowledgebase-&amp;-notes/programming/graphics/parallel-programming.html#Device_Code"><div class="tree-item-contents heading-link" heading-name="Device Code"><span class="tree-item-title">Device Code</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-link" href="knowledgebase-&amp;-notes/programming/graphics/parallel-programming.html#Kernel_Code"><div class="tree-item-contents heading-link" heading-name="Kernel Code"><span class="tree-item-title">Kernel Code</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-link" href="knowledgebase-&amp;-notes/programming/graphics/parallel-programming.html#Compilation"><div class="tree-item-contents heading-link" heading-name="Compilation"><span class="tree-item-title">Compilation</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item mod-collapsible is-collapsed" data-depth="2"><a class="tree-link" href="knowledgebase-&amp;-notes/programming/graphics/parallel-programming.html#Grids_and_Blocks_and_Threads_and_Warps"><div class="tree-item-contents heading-link" heading-name="Grids and Blocks and Threads and Warps"><div class="collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><span class="tree-item-title">Grids and Blocks and Threads and Warps</span></div></a><div class="tree-item-children nav-folder-children" style="display: none;"><div class="tree-item" data-depth="3"><a class="tree-link" href="knowledgebase-&amp;-notes/programming/graphics/parallel-programming.html#Heirarchy"><div class="tree-item-contents heading-link" heading-name="Heirarchy"><span class="tree-item-title">Heirarchy</span></div></a><div class="tree-item-children nav-folder-children"></div></div></div></div><div class="tree-item mod-collapsible is-collapsed" data-depth="2"><a class="tree-link" href="knowledgebase-&amp;-notes/programming/graphics/parallel-programming.html#Thread_Scheduling"><div class="tree-item-contents heading-link" heading-name="Thread Scheduling"><div class="collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><span class="tree-item-title">Thread Scheduling</span></div></a><div class="tree-item-children nav-folder-children" style="display: none;"><div class="tree-item" data-depth="3"><a class="tree-link" href="knowledgebase-&amp;-notes/programming/graphics/parallel-programming.html#Optimizing_SM_and_thread_count"><div class="tree-item-contents heading-link" heading-name="Optimizing SM and thread count"><span class="tree-item-title">Optimizing SM and thread count</span></div></a><div class="tree-item-children nav-folder-children"></div></div></div></div><div class="tree-item mod-collapsible is-collapsed" data-depth="2"><a class="tree-link" href="knowledgebase-&amp;-notes/programming/graphics/parallel-programming.html#Memory"><div class="tree-item-contents heading-link" heading-name="Memory"><div class="collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><span class="tree-item-title">Memory</span></div></a><div class="tree-item-children nav-folder-children" style="display: none;"><div class="tree-item" data-depth="3"><a class="tree-link" href="knowledgebase-&amp;-notes/programming/graphics/parallel-programming.html#Memory_access_technique"><div class="tree-item-contents heading-link" heading-name="Memory access technique"><span class="tree-item-title">Memory access technique</span></div></a><div class="tree-item-children nav-folder-children"></div></div></div></div><div class="tree-item mod-collapsible is-collapsed" data-depth="2"><a class="tree-link" href="knowledgebase-&amp;-notes/programming/graphics/parallel-programming.html#Warps"><div class="tree-item-contents heading-link" heading-name="Warps"><div class="collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><span class="tree-item-title">Warps</span></div></a><div class="tree-item-children nav-folder-children" style="display: none;"><div class="tree-item" data-depth="3"><a class="tree-link" href="knowledgebase-&amp;-notes/programming/graphics/parallel-programming.html#About_warp_and_block_sizes"><div class="tree-item-contents heading-link" heading-name="About warp and block sizes"><span class="tree-item-title">About warp and block sizes</span></div></a><div class="tree-item-children nav-folder-children"></div></div></div></div><div class="tree-item" data-depth="2"><a class="tree-link" href="knowledgebase-&amp;-notes/programming/graphics/parallel-programming.html#Memory_access:_DRAM_Bursting"><div class="tree-item-contents heading-link" heading-name="Memory access: DRAM Bursting"><span class="tree-item-title">Memory access: DRAM Bursting</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-link" href="knowledgebase-&amp;-notes/programming/graphics/parallel-programming.html#Atomic_Operations"><div class="tree-item-contents heading-link" heading-name="Atomic Operations"><span class="tree-item-title">Atomic Operations</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-link" href="knowledgebase-&amp;-notes/programming/graphics/parallel-programming.html#Privatization"><div class="tree-item-contents heading-link" heading-name="Privatization"><span class="tree-item-title">Privatization</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item mod-collapsible is-collapsed" data-depth="2"><a class="tree-link" href="knowledgebase-&amp;-notes/programming/graphics/parallel-programming.html#Parallel_Programming_Optimizations"><div class="tree-item-contents heading-link" heading-name="Parallel Programming Optimizations"><div class="collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><span class="tree-item-title">Parallel Programming Optimizations</span></div></a><div class="tree-item-children nav-folder-children" style="display: none;"><div class="tree-item" data-depth="3"><a class="tree-link" href="knowledgebase-&amp;-notes/programming/graphics/parallel-programming.html#Convolution"><div class="tree-item-contents heading-link" heading-name="Convolution"><span class="tree-item-title">Convolution</span></div></a><div class="tree-item-children nav-folder-children"></div></div></div></div><div class="tree-item mod-collapsible is-collapsed" data-depth="2"><a class="tree-link" href="knowledgebase-&amp;-notes/programming/graphics/parallel-programming.html#Tiled_Convolution"><div class="tree-item-contents heading-link" heading-name="Tiled Convolution"><div class="collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><span class="tree-item-title">Tiled Convolution</span></div></a><div class="tree-item-children nav-folder-children" style="display: none;"><div class="tree-item" data-depth="3"><a class="tree-link" href="knowledgebase-&amp;-notes/programming/graphics/parallel-programming.html#Tiled_Convolution_design"><div class="tree-item-contents heading-link" heading-name="Tiled Convolution design"><span class="tree-item-title">Tiled Convolution design</span></div></a><div class="tree-item-children nav-folder-children"></div></div></div></div></div></div><div class="tree-item" data-depth="1"><a class="tree-link" href="knowledgebase-&amp;-notes/programming/graphics/parallel-programming.html#Other_notes"><div class="tree-item-contents heading-link" heading-name="Other notes"><span class="tree-item-title">Other notes</span></div></a><div class="tree-item-children nav-folder-children"></div></div></div></div></div><script defer="">let rs = document.querySelector(".sidebar-right"); rs.classList.add("is-collapsed"); if (window.innerWidth > 768) rs.classList.remove("is-collapsed"); rs.style.setProperty("--sidebar-width", localStorage.getItem("sidebar-right-width"));</script></div></div></body></html>
