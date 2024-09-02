@@ -545,8 +545,3 @@ https://www.jonpeddie.com/news/trends-and-forecasts-in-computer-graphics-power-e
 Interesting things:
 - Immediate mode rendering may be more power efficient depending on the amount of updates. A dynamically switching render mode can be most power efficient.
 - Regular rendering techniques also apply here.
-- 
-
-
-
-test update
