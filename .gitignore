@@ -3,6 +3,7 @@
 
 # whitelist impt files
 !.gitignore
+!.github
 !index.html
 
 # whitelist all in public folder
