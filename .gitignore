@@ -6,9 +6,11 @@
 !.github
 !index.html
 
-# whitelist all in public folder
+# whitelist all in docs/public folder
 !/public
 !/public/**
+!/docs
+!/docs/**
 
 # whitelist certain folders
 !/vault
