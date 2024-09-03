@@ -606,6 +606,9 @@ Pretty much everybody use tangent.
 https://blenderartists.org/t/tangent-vs-object-space-vs-world-space/456423
 ## Lighting calculations with Tangent Space Normals
 Right now, we may have lights in world space and your tangent normals in tangent space. 
+TODO:
+- Assimp provides bitangents and tangents on top of normals (height map)
+- Figure out how to use them to do tangent space normal mapping https://learnopengl.com/Advanced-Lighting/Normal-Mapping
 
 # Power Efficient Rendering
 https://www.jonpeddie.com/news/trends-and-forecasts-in-computer-graphics-power-efficient-rendering/
