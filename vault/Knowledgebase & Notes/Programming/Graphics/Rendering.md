@@ -604,11 +604,113 @@ For completly static object with its own normal map, you could use world (but no
 Pretty much everybody use tangent.
 #### More reading
 https://blenderartists.org/t/tangent-vs-object-space-vs-world-space/456423
-## Lighting calculations with Tangent Space Normals
-Right now, we may have lights in world space and your tangent normals in tangent space. 
-TODO:
-- Assimp provides bitangents and tangents on top of normals (height map)
-- Figure out how to use them to do tangent space normal mapping https://learnopengl.com/Advanced-Lighting/Normal-Mapping
+## Lighting calculations with Tangent Space
+Normally, if we'd used world space or object space normals, computing the angle of reflection of a light ray is simple enough, as everything is in (almost) the same coordinate system.
+Let's assume we are going with tangent space normals instead.
+In order to use tangent normals for lighting, we'd need the light source and the normal to be in the same coordinate system. Right now, they are in different systems, world space and tangent space. Thus, we'd need to build a change-of-basis matrix to convert either the light or normal to the other space. For that, we'd need to obtain the 3 basis vectors to build the change-of-basis matrix, which are the Normal, Tangent and Bi-Tangent vectors. We'll need these vectors on a per-vertex basis.
+### Calculating Tangent and Bi-Tangent
+https://learnopengl.com/Advanced-Lighting/Normal-Mapping
+Skippa skippa. Just note that this change of base matrix is called a TBN (Tangent, BI-tangent, Normal) matrix.
+TLDR: Calculate it manually when importing your assets, or use the importer tool (e.g. assimp) to generate tangent and bi-tangents.
+> If you're generating a custom mesh (e.g. generating terrain) you might have to do this calculation manually. This is usually implemented in tooling and not really for game runtime so that's a problem for next time.
+
+After obtaining thsoe vectors, these per-vertex vectors should look something like that, witht the blue z axes pointing away from the surface instead of globally up:
+![](https://learnopengl.com/img/advanced-lighting/normal_mapping_tbn_shown.png)
+### Applying TBN in shaders
+Our light and normals are still in different coordinate systems. But we now have a change-of-basis matrix!
+There are 2 ways to go about computing lighting:
+1. Convert everything into world space and compute in world space
+2. Convert everything into tangent space and compute in tangent space
+
+Hint: Computing in Tangent space is more efficient. Read more below.
+#### 1. Computing in World Space
+Need to convert the tangent space normal into world space normal. Light direction is already in world space.
+Compute the TBN matrix per-vertex, then pass the info to the fragment shader. It should look something like this in glsl vertex shader:
+```
+// Inputs from host
+layout (location = 0) in vec3 aPos;
+layout (location = 1) in vec3 aNormal;
+layout (location = 2) in vec2 aTexCoords;
+layout (location = 3) in vec3 aTangent;
+layout (location = 4) in vec3 aBitangent;  
+
+// outputs for later shader stages (frag shader)
+out VS_OUT {
+    vec3 FragPos;
+    vec2 TexCoords;
+    mat3 TBN;
+} vs_out;
+
+void main()
+{
+   [...]
+   vec3 T = normalize(vec3(model * vec4(aTangent,   0.0)));
+   vec3 B = normalize(vec3(model * vec4(aBitangent, 0.0)));
+   vec3 N = normalize(vec3(model * vec4(aNormal,    0.0)));
+   vs_out.TBN = mat3(T, B, N); // compute TBN matrix and pass to frag shader
+}
+```
+In the fragment shader, you'd want to grab the normal from the texture map (still in tangent space), and then apply this TBN matrix to the tangent space normal. You'll get a world space normal. Now you can use this world space normal for lighting calculations!
+```
+// Input from vert shader (WARNING: Values are interpolated)
+in VS_OUT {
+    vec3 FragPos;
+    vec2 TexCoords;
+    mat3 TBN;
+} fs_in;  
+
+normal = texture(normalMap, fs_in.TexCoords).rgb;   // extract normals from normal map. Normal is in Tangent Space.
+normal = normal * 2.0 - 1.0;                        // Re-adjust normals extracted from map to turn it from range [0, 1] to [-1, 1]
+normal = normalize(fs_in.TBN * normal);             // Apply TBN matrix to tangent space normal, get world space normal.
+```
+> Note: When transferring data from vertex to fragment shader, values can't be passed 1 to 1. Instead, values passed from vertex shaders to fragment shaders are interpolated depending on their position in the triangle. This also means the values in your matrix are interpolated as well. This may cause the matrix to end up not being orthogonal when it reaches your fragment shader. You can try to re-orthogonalize the matrix by extracting 2 of the axes and then re-calculating the 3rd axis from cross-product-ing. Or you could use the matrix as-is but risk inaccurate normals.
+
+#### 2. Computing in Tangent Space
+In the vertex shader, we compute the TBN matrix as usual. But this time, we need an inverse matrix of TBN, as we're converting things the other way round. Due to the matrix being orthogonal, transposing the matrix is the same as inverting the matrix.
+
+Now, instead of passing in the matrix to the fragment, we perform matrix multiplication in the vertex instead. What do we multiply? _Not_ the normal, because that's in the fragment and not vertex. We instead pre-compute all the values we need for lighting calculations first before sending it over to the fragment shader. 
+This means that you should pre-compute:
+- TangentLightPos
+- TangentViewPos
+- TangentFragPos
+
+With these 3 values, and the tangent normal later, we can compute the lighting.
+```
+// VERTEX SHADER
+out VS_OUT {
+    vec3 FragPos;
+    vec2 TexCoords;
+    vec3 TangentLightPos;
+    vec3 TangentViewPos;
+    vec3 TangentFragPos;
+} vs_out;
+
+uniform vec3 lightPos;
+uniform vec3 viewPos;
+ 
+[...]
+  
+void main()
+{    
+    [...]
+    mat3 TBN = transpose(mat3(T, B, N));
+    vs_out.TangentLightPos = TBN * lightPos;
+    vs_out.TangentViewPos  = TBN * viewPos;
+    vs_out.TangentFragPos  = TBN * vec3(model * vec4(aPos, 1.0));
+}  
+
+// FRAG SHADER
+void main()
+{           
+    vec3 normal = texture(normalMap, fs_in.TexCoords).rgb;
+    normal = normalize(normal * 2.0 - 1.0);   
+   
+   // normalize values because interpolated values from fs_in may not be normalized anymore
+    vec3 lightDir = fs_in.TBN * normalize(lightPos - fs_in.FragPos); 
+    vec3 viewDir  = fs_in.TBN * normalize(viewPos - fs_in.FragPos);    
+    [...]
+}  
+```
 
 # Power Efficient Rendering
 https://www.jonpeddie.com/news/trends-and-forecasts-in-computer-graphics-power-efficient-rendering/
