@@ -607,7 +607,8 @@ Pretty much everybody use tangent.
 
 So, TLDR: Use tangent-space normals unless you have a very special edge-case and you know what you're doing.
 #### More reading
-https://blenderartists.org/t/tangent-vs-object-space-vs-world-space/456423
+[Tangent Space vs World Space](https://blenderartists.org/t/tangent-vs-object-space-vs-world-space/456423)
+[Pros of Tangent Space mapping](https://gamedev.stackexchange.com/questions/199246/what-is-the-purpose-of-tangent-and-bitangent-vertex-attributes)
 ## Lighting calculations with Tangent Space
 Normally, if we'd used world space or object space normals, computing the angle of reflection of a light ray is simple enough, as everything is in (almost) the same coordinate system.
 Let's assume we are going with tangent space normals instead.
@@ -715,6 +716,7 @@ void main()
     [...]
 }  
 ```
+> Final note: For optimization, you can skip sending bi-tangent values over to the shaders from the CPU. Bi-tangent values can be computed on the GPU. This is of course assuming that the cost of transferring data is greater than the cost of comutation on the GPU, which is probably the case.
 
 # Power Efficient Rendering
 https://www.jonpeddie.com/news/trends-and-forecasts-in-computer-graphics-power-efficient-rendering/
