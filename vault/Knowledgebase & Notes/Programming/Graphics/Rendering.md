@@ -1,4 +1,4 @@
-# General
+	# General
 For GLSL/GLM, use **COLUMN MAJOR** format.
 ```
 0 3 6
@@ -550,15 +550,14 @@ At 90 degrees (cos90 = 0), the light intensity should be 0.
 At >90 degrees, clamp light intensity at 0 (because you can't have negative light).
 
 Dot product of 2 unit vectors conveniently gives us the cosine value, so we can use the dot product.
-[insert image here]
-
-An easy-to-follow tutorial: https://cs1230.graphics/labs/lab10/#introduction
+![[Pasted image 20240904221918.png]]
 
 ### Faceted (Flat) Shading
 Super-fast shader.
 Basic idea is that all pixels on a triangle surface uses the same normal for lighting calculation. Since triangles have a flat surface, this means that all pixels in this triangle will have the same color value. The normal should be the triangle surface's normal.
+![[Pasted image 20240904221948.png]]
 
-End result will look very... triangl-y. Each triangle face will be visibly shaded, but it's super fast. 
+End result will look very... triangle-y. Each triangle face will be visibly shaded, but it's super fast. 
 ![](https://help.autodesk.com/cloudhelp/2023/ENU/MotionBuilder/images/GUID-A9B5C225-B9B6-4959-AB74-E5BF7739F0AA.png)
 
 ### Gourad/Phong Shading
@@ -600,15 +599,12 @@ Similar to object space, but instead of the axes aligning to the object, axes ar
 #### What should you use
 From [this thread](https://polycount.com/discussion/227725/difference-between-object-space-and-world-space-normals):
 >Tangent space maps are more reusable (tiling textures for instance), and also work with skinned/deforming objects.
-They are also more prone to artefacts and the lighting calculation is slightly more complex (but neglectable)
+They are also more prone to artefacts and the lighting calculation is slightly more complex (but negligible)
 For a non deforming asset with its own normal map, you could use object space.
-For completly static object with its own normal map, you could use world (but no one do this).
+For completely static object with its own normal map, you could use world (but no one do this).
 Pretty much everybody use tangent.
-
-So, TLDR: Use tangent-space normals unless you have a very special edge-case and you know what you're doing.
 #### More reading
-[Tangent Space vs World Space](https://blenderartists.org/t/tangent-vs-object-space-vs-world-space/456423)
-[Pros of Tangent Space mapping](https://gamedev.stackexchange.com/questions/199246/what-is-the-purpose-of-tangent-and-bitangent-vertex-attributes)
+https://blenderartists.org/t/tangent-vs-object-space-vs-world-space/456423
 ## Lighting calculations with Tangent Space
 Normally, if we'd used world space or object space normals, computing the angle of reflection of a light ray is simple enough, as everything is in (almost) the same coordinate system.
 Let's assume we are going with tangent space normals instead.
@@ -668,7 +664,7 @@ normal = texture(normalMap, fs_in.TexCoords).rgb;   // extract normals from norm
 normal = normal * 2.0 - 1.0;                        // Re-adjust normals extracted from map to turn it from range [0, 1] to [-1, 1]
 normal = normalize(fs_in.TBN * normal);             // Apply TBN matrix to tangent space normal, get world space normal.
 ```
-> Note: We have more fragments than vertices. Thus, all values from the vertex shader gets passed to fragment shaders via interpolation. This includes the matrix itself too. All individual components in the matrix (the floats and stuff) gets interpolated, so the matrix your fragment shader recieves may not be orthogonal or normalized any longer. You'd have to re-normalize and orthogonalize your matrix to ensure accuracy. Or, you could ignore the inaccuracies and try your luck.
+> Note: When transferring data from vertex to fragment shader, values can't be passed 1 to 1. Instead, values passed from vertex shaders to fragment shaders are interpolated depending on their position in the triangle. This also means the values in your matrix are interpolated as well. This may cause the matrix to end up not being orthogonal when it reaches your fragment shader. You can try to re-orthogonalize the matrix by extracting 2 of the axes and then re-calculating the 3rd axis from cross-product-ing. Or you could use the matrix as-is but risk inaccurate normals.
 
 #### 2. Computing in Tangent Space
 In the vertex shader, we compute the TBN matrix as usual. But this time, we need an inverse matrix of TBN, as we're converting things the other way round. Due to the matrix being orthogonal, transposing the matrix is the same as inverting the matrix.
@@ -716,7 +712,6 @@ void main()
     [...]
 }  
 ```
-> Final note: For optimization, you can skip sending bi-tangent values over to the shaders from the CPU. Bi-tangent values can be computed on the GPU. This is of course assuming that the cost of transferring data is greater than the cost of comutation on the GPU, which is probably the case.
 
 # Power Efficient Rendering
 https://www.jonpeddie.com/news/trends-and-forecasts-in-computer-graphics-power-efficient-rendering/
