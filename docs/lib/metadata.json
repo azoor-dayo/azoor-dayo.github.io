@@ -1,6 +1,6 @@
 {
   "vaultName": "Documents",
-  "lastExport": 1725720469652,
+  "lastExport": 1725973823349,
   "pluginVersion": "1.8.01",
   "validBodyClasses": "publish css-settings-manager theme-dark show-inline-title show-ribbon outliner-plugin-dnd mk-readable-line mk-folder-lines mk-spaces-enabled mk-inline-context-enabled mk-flow-seamless",
   "useCustomHeadContent": false,
@@ -155,7 +155,7 @@
   ],
   "fileInfo": {
     "Knowledgebase & Notes/Other Academia/Calculus.md": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 2817,
       "exportedPath": "knowledgebase-&-notes/other-academia/calculus.html",
       "dependencies": [
@@ -192,31 +192,31 @@
       ]
     },
     "Knowledgebase & Notes/Other Academia/Linear Algebra.md": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 19,
       "exportedPath": "knowledgebase-&-notes/other-academia/linear-algebra.html",
       "dependencies": []
     },
     "Knowledgebase & Notes/Other Academia/Probability and Stats.md": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 19,
       "exportedPath": "knowledgebase-&-notes/other-academia/probability-and-stats.html",
       "dependencies": []
     },
     "Knowledgebase & Notes/Programming/Graphics/Graphics.md": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 0,
       "exportedPath": "knowledgebase-&-notes/programming/graphics/graphics.html",
       "dependencies": []
     },
     "Knowledgebase & Notes/Programming/Graphics/OpenGL.md": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 4685,
       "exportedPath": "knowledgebase-&-notes/programming/graphics/opengl.html",
       "dependencies": []
     },
     "Knowledgebase & Notes/Programming/Graphics/Parallel Programming.md": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 16033,
       "exportedPath": "knowledgebase-&-notes/programming/graphics/parallel-programming.html",
       "dependencies": [
@@ -281,8 +281,8 @@
       ]
     },
     "Knowledgebase & Notes/Programming/Graphics/Rendering.md": {
-      "modifiedTime": 1725720469652,
-      "sourceSize": 41053,
+      "modifiedTime": 1725973823349,
+      "sourceSize": 43473,
       "exportedPath": "knowledgebase-&-notes/programming/graphics/rendering.html",
       "dependencies": [
         "lib/media/pasted-image-20240819004713.png",
@@ -324,457 +324,457 @@
       ]
     },
     "Knowledgebase & Notes/Programming/Graphics/Vulkan.md": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 1960,
       "exportedPath": "knowledgebase-&-notes/programming/graphics/vulkan.html",
       "dependencies": []
     },
     "Knowledgebase & Notes/Programming/CPP Notes.md": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 522,
       "exportedPath": "knowledgebase-&-notes/programming/cpp-notes.html",
       "dependencies": []
     },
     "Knowledgebase & Notes/Programming/Documentation best practices.md": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 1630,
       "exportedPath": "knowledgebase-&-notes/programming/documentation-best-practices.html",
       "dependencies": []
     },
     "Knowledgebase & Notes/Programming/Game Dev & Programming.md": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 236,
       "exportedPath": "knowledgebase-&-notes/programming/game-dev-&-programming.html",
       "dependencies": []
     },
     "Knowledgebase & Notes/Programming/General Programming.md": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 98,
       "exportedPath": "knowledgebase-&-notes/programming/general-programming.html",
       "dependencies": []
     },
     "Knowledgebase & Notes/Programming/Low Level Programming.md": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 135,
       "exportedPath": "knowledgebase-&-notes/programming/low-level-programming.html",
       "dependencies": []
     },
     "Knowledgebase & Notes/AI design.md": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 2069,
       "exportedPath": "knowledgebase-&-notes/ai-design.html",
       "dependencies": []
     },
     "lib/media/unknown_1710752872350_0.webp": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 102878,
       "exportedPath": "lib/media/unknown_1710752872350_0.webp",
       "dependencies": []
     },
     "lib/media/unknown_1710752878315_0.webp": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 78338,
       "exportedPath": "lib/media/unknown_1710752878315_0.webp",
       "dependencies": []
     },
     "lib/media/unknown_1710752882573_0.webp": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 124468,
       "exportedPath": "lib/media/unknown_1710752882573_0.webp",
       "dependencies": []
     },
     "lib/media/unknown_1710752890876_0.webp": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 103450,
       "exportedPath": "lib/media/unknown_1710752890876_0.webp",
       "dependencies": []
     },
     "lib/media/unknown_1710752902792_0.webp": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 65140,
       "exportedPath": "lib/media/unknown_1710752902792_0.webp",
       "dependencies": []
     },
     "lib/media/unknown_1710752938161_0.webp": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 154162,
       "exportedPath": "lib/media/unknown_1710752938161_0.webp",
       "dependencies": []
     },
     "lib/media/unknown_1710752944441_0.webp": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 156856,
       "exportedPath": "lib/media/unknown_1710752944441_0.webp",
       "dependencies": []
     },
     "lib/media/unknown_1710752958375_0.webp": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 61344,
       "exportedPath": "lib/media/unknown_1710752958375_0.webp",
       "dependencies": []
     },
     "lib/media/unknown_1710752978500_0.webp": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 91654,
       "exportedPath": "lib/media/unknown_1710752978500_0.webp",
       "dependencies": []
     },
     "lib/media/unknown_1710752985207_0.webp": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 73602,
       "exportedPath": "lib/media/unknown_1710752985207_0.webp",
       "dependencies": []
     },
     "lib/media/unknown_1710752991045_0.webp": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 68404,
       "exportedPath": "lib/media/unknown_1710752991045_0.webp",
       "dependencies": []
     },
     "lib/media/unknown_1710753029741_0.webp": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 43150,
       "exportedPath": "lib/media/unknown_1710753029741_0.webp",
       "dependencies": []
     },
     "lib/media/unknown_1710753035103_0.webp": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 37384,
       "exportedPath": "lib/media/unknown_1710753035103_0.webp",
       "dependencies": []
     },
     "lib/media/unknown_1710753041083_0.webp": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 21838,
       "exportedPath": "lib/media/unknown_1710753041083_0.webp",
       "dependencies": []
     },
     "lib/media/unknown_1710753048063_0.webp": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 64334,
       "exportedPath": "lib/media/unknown_1710753048063_0.webp",
       "dependencies": []
     },
     "lib/media/image_1707281439749_0.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 303288,
       "exportedPath": "lib/media/image_1707281439749_0.png",
       "dependencies": []
     },
     "lib/media/image_1707281457801_0.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 189731,
       "exportedPath": "lib/media/image_1707281457801_0.png",
       "dependencies": []
     },
     "lib/media/image_1707281471813_0.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 176717,
       "exportedPath": "lib/media/image_1707281471813_0.png",
       "dependencies": []
     },
     "lib/media/image_1705031096910_0.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 30971,
       "exportedPath": "lib/media/image_1705031096910_0.png",
       "dependencies": []
     },
     "lib/media/image_1705032054961_0.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 518985,
       "exportedPath": "lib/media/image_1705032054961_0.png",
       "dependencies": []
     },
     "lib/media/image_1705035405002_0.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 12591,
       "exportedPath": "lib/media/image_1705035405002_0.png",
       "dependencies": []
     },
     "lib/media/image_1705462227500_0.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 18727,
       "exportedPath": "lib/media/image_1705462227500_0.png",
       "dependencies": []
     },
     "lib/media/image_1705462375816_0.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 29210,
       "exportedPath": "lib/media/image_1705462375816_0.png",
       "dependencies": []
     },
     "lib/media/image_1705463747338_0.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 23842,
       "exportedPath": "lib/media/image_1705463747338_0.png",
       "dependencies": []
     },
     "lib/media/image_1705463548810_0.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 32062,
       "exportedPath": "lib/media/image_1705463548810_0.png",
       "dependencies": []
     },
     "lib/media/image_1705635552018_0.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 58143,
       "exportedPath": "lib/media/image_1705635552018_0.png",
       "dependencies": []
     },
     "lib/media/image_1705636135948_0.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 23669,
       "exportedPath": "lib/media/image_1705636135948_0.png",
       "dependencies": []
     },
     "lib/media/image_1705636118339_0.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 87685,
       "exportedPath": "lib/media/image_1705636118339_0.png",
       "dependencies": []
     },
     "lib/media/image_1705636514141_0.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 11145,
       "exportedPath": "lib/media/image_1705636514141_0.png",
       "dependencies": []
     },
     "lib/media/image_1706240020979_0.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 15408,
       "exportedPath": "lib/media/image_1706240020979_0.png",
       "dependencies": []
     },
     "lib/media/image_1706240062451_0.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 31835,
       "exportedPath": "lib/media/image_1706240062451_0.png",
       "dependencies": []
     },
     "lib/media/image_1706240143354_0.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 47454,
       "exportedPath": "lib/media/image_1706240143354_0.png",
       "dependencies": []
     },
     "lib/media/image_1706240173662_0.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 58432,
       "exportedPath": "lib/media/image_1706240173662_0.png",
       "dependencies": []
     },
     "lib/media/image_1706239647408_0.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 64176,
       "exportedPath": "lib/media/image_1706239647408_0.png",
       "dependencies": []
     },
     "lib/media/image_1706239738455_0.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 65835,
       "exportedPath": "lib/media/image_1706239738455_0.png",
       "dependencies": []
     },
     "lib/media/image_1706240348823_0.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 16829,
       "exportedPath": "lib/media/image_1706240348823_0.png",
       "dependencies": []
     },
     "lib/media/image_1706241553845_0.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 24450,
       "exportedPath": "lib/media/image_1706241553845_0.png",
       "dependencies": []
     },
     "lib/media/image_1706241608388_0.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 24156,
       "exportedPath": "lib/media/image_1706241608388_0.png",
       "dependencies": []
     },
     "lib/media/image_1706671942740_0.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 213364,
       "exportedPath": "lib/media/image_1706671942740_0.png",
       "dependencies": []
     },
     "lib/media/image_1706672027691_0.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 53221,
       "exportedPath": "lib/media/image_1706672027691_0.png",
       "dependencies": []
     },
     "lib/media/image_1706672140030_0.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 85471,
       "exportedPath": "lib/media/image_1706672140030_0.png",
       "dependencies": []
     },
     "lib/media/image_1709465360556_0.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 137189,
       "exportedPath": "lib/media/image_1709465360556_0.png",
       "dependencies": []
     },
     "lib/media/image_1709465766033_0.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 80371,
       "exportedPath": "lib/media/image_1709465766033_0.png",
       "dependencies": []
     },
     "lib/media/image_1709474115211_0.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 57274,
       "exportedPath": "lib/media/image_1709474115211_0.png",
       "dependencies": []
     },
     "lib/media/pasted-image-20240819004713.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 116933,
       "exportedPath": "lib/media/pasted-image-20240819004713.png",
       "dependencies": []
     },
     "lib/media/pasted-image-20240819004730.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 116164,
       "exportedPath": "lib/media/pasted-image-20240819004730.png",
       "dependencies": []
     },
     "lib/media/pasted-image-20240819004735.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 126901,
       "exportedPath": "lib/media/pasted-image-20240819004735.png",
       "dependencies": []
     },
     "lib/media/pasted-image-20240819004819.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 377026,
       "exportedPath": "lib/media/pasted-image-20240819004819.png",
       "dependencies": []
     },
     "lib/media/pasted-image-20240819004904.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 165899,
       "exportedPath": "lib/media/pasted-image-20240819004904.png",
       "dependencies": []
     },
     "lib/media/pasted-image-20240819004933.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 313551,
       "exportedPath": "lib/media/pasted-image-20240819004933.png",
       "dependencies": []
     },
     "lib/media/pasted-image-20240819004954.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 141826,
       "exportedPath": "lib/media/pasted-image-20240819004954.png",
       "dependencies": []
     },
     "lib/media/pasted-image-20240819005048.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 224530,
       "exportedPath": "lib/media/pasted-image-20240819005048.png",
       "dependencies": []
     },
     "lib/media/pasted-image-20240819005056.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 29545,
       "exportedPath": "lib/media/pasted-image-20240819005056.png",
       "dependencies": []
     },
     "lib/media/pasted-image-20240819013535.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 61222,
       "exportedPath": "lib/media/pasted-image-20240819013535.png",
       "dependencies": []
     },
     "lib/media/pasted-image-20240819013655.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 58866,
       "exportedPath": "lib/media/pasted-image-20240819013655.png",
       "dependencies": []
     },
     "lib/media/pasted-image-20240819013713.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 16809,
       "exportedPath": "lib/media/pasted-image-20240819013713.png",
       "dependencies": []
     },
     "lib/media/pasted-image-20240819014108.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 101504,
       "exportedPath": "lib/media/pasted-image-20240819014108.png",
       "dependencies": []
     },
     "lib/media/pasted-image-20240819014201.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 239301,
       "exportedPath": "lib/media/pasted-image-20240819014201.png",
       "dependencies": []
     },
     "lib/media/pasted-image-20240819015000.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 14404,
       "exportedPath": "lib/media/pasted-image-20240819015000.png",
       "dependencies": []
     },
     "lib/media/pasted-image-20240819015014.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 15558,
       "exportedPath": "lib/media/pasted-image-20240819015014.png",
       "dependencies": []
     },
     "lib/media/pasted-image-20240819005324.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 27744,
       "exportedPath": "lib/media/pasted-image-20240819005324.png",
       "dependencies": []
     },
     "lib/media/pasted-image-20240819005329.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 166274,
       "exportedPath": "lib/media/pasted-image-20240819005329.png",
       "dependencies": []
     },
     "lib/media/pasted-image-20240819015232.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 177083,
       "exportedPath": "lib/media/pasted-image-20240819015232.png",
       "dependencies": []
     },
     "lib/media/pasted-image-20240819015340.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 131288,
       "exportedPath": "lib/media/pasted-image-20240819015340.png",
       "dependencies": []
     },
     "lib/media/pasted-image-20240819015600.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 22823,
       "exportedPath": "lib/media/pasted-image-20240819015600.png",
       "dependencies": []
     },
     "lib/media/pasted-image-20240819015705.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 69296,
       "exportedPath": "lib/media/pasted-image-20240819015705.png",
       "dependencies": []
     },
     "lib/media/pasted-image-20240819015824.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 35340,
       "exportedPath": "lib/media/pasted-image-20240819015824.png",
       "dependencies": []
     },
     "lib/media/pasted-image-20240819232059.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 131620,
       "exportedPath": "lib/media/pasted-image-20240819232059.png",
       "dependencies": []
     },
     "lib/media/pasted-image-20240825204651.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 57434,
       "exportedPath": "lib/media/pasted-image-20240825204651.png",
       "dependencies": []
@@ -786,103 +786,103 @@
       "dependencies": []
     },
     "lib/fonts/94f2f163d4b698242fef.otf": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 66800,
       "exportedPath": "lib/fonts/94f2f163d4b698242fef.otf",
       "dependencies": []
     },
     "lib/fonts/72505e6a122c6acd5471.woff2": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 104232,
       "exportedPath": "lib/fonts/72505e6a122c6acd5471.woff2",
       "dependencies": []
     },
     "lib/fonts/2d5198822ab091ce4305.woff2": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 104332,
       "exportedPath": "lib/fonts/2d5198822ab091ce4305.woff2",
       "dependencies": []
     },
     "lib/fonts/c8ba52b05a9ef10f4758.woff2": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 98868,
       "exportedPath": "lib/fonts/c8ba52b05a9ef10f4758.woff2",
       "dependencies": []
     },
     "lib/fonts/cb10ffd7684cd9836a05.woff2": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 106876,
       "exportedPath": "lib/fonts/cb10ffd7684cd9836a05.woff2",
       "dependencies": []
     },
     "lib/fonts/b5f0f109bc88052d4000.woff2": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 105804,
       "exportedPath": "lib/fonts/b5f0f109bc88052d4000.woff2",
       "dependencies": []
     },
     "lib/fonts/cbe0ae49c52c920fd563.woff2": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 106108,
       "exportedPath": "lib/fonts/cbe0ae49c52c920fd563.woff2",
       "dependencies": []
     },
     "lib/fonts/535a6cf662596b3bd6a6.woff2": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 111708,
       "exportedPath": "lib/fonts/535a6cf662596b3bd6a6.woff2",
       "dependencies": []
     },
     "lib/fonts/70cc7ff27245e82ad414.ttf": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 192740,
       "exportedPath": "lib/fonts/70cc7ff27245e82ad414.ttf",
       "dependencies": []
     },
     "lib/fonts/454577c22304619db035.ttf": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 161376,
       "exportedPath": "lib/fonts/454577c22304619db035.ttf",
       "dependencies": []
     },
     "lib/fonts/52ac8f3034507f1d9e53.ttf": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 191568,
       "exportedPath": "lib/fonts/52ac8f3034507f1d9e53.ttf",
       "dependencies": []
     },
     "lib/fonts/05b618077343fbbd92b7.ttf": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 155288,
       "exportedPath": "lib/fonts/05b618077343fbbd92b7.ttf",
       "dependencies": []
     },
     "lib/fonts/4bb6ac751d1c5478ff3a.woff2": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 7876,
       "exportedPath": "lib/fonts/4bb6ac751d1c5478ff3a.woff2",
       "dependencies": []
     },
     "lib/media/874d8b8e340f75575caa.svg": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 317,
       "exportedPath": "lib/media/874d8b8e340f75575caa.svg",
       "dependencies": []
     },
     "lib/media/3d6c1bdc4d87cde4de67.svg": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 279,
       "exportedPath": "lib/media/3d6c1bdc4d87cde4de67.svg",
       "dependencies": []
     },
     "lib/html/file-tree.html": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 15457,
       "exportedPath": "lib/html/file-tree.html",
       "dependencies": []
     },
     "lib/scripts/webpage.js": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 47290,
       "exportedPath": "lib/scripts/webpage.js",
       "dependencies": []
@@ -918,13 +918,13 @@
       "dependencies": []
     },
     "lib/scripts/minisearch.js": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 29422,
       "exportedPath": "lib/scripts/minisearch.js",
       "dependencies": []
     },
     "lib/media/favicon.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 1105,
       "exportedPath": "lib/media/favicon.png",
       "dependencies": []
@@ -936,103 +936,103 @@
       "dependencies": []
     },
     "lib/styles/obsidian.css": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 130471,
       "exportedPath": "lib/styles/obsidian.css",
       "dependencies": []
     },
     "lib/styles/theme.css": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 8284,
       "exportedPath": "lib/styles/theme.css",
       "dependencies": []
     },
     "lib/styles/global-variable-styles.css": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 367,
       "exportedPath": "lib/styles/global-variable-styles.css",
       "dependencies": []
     },
     "lib/styles/main-styles.css": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 23130,
       "exportedPath": "lib/styles/main-styles.css",
       "dependencies": []
     },
     "lib/styles/supported-plugins.css": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 1676,
       "exportedPath": "lib/styles/supported-plugins.css",
       "dependencies": []
     },
     "lib/media/pasted-image-20240826220306.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 21089,
       "exportedPath": "lib/media/pasted-image-20240826220306.png",
       "dependencies": []
     },
     "lib/media/pasted-image-20240826220851.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 25797,
       "exportedPath": "lib/media/pasted-image-20240826220851.png",
       "dependencies": []
     },
     "lib/media/pasted-image-20240826221425.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 101415,
       "exportedPath": "lib/media/pasted-image-20240826221425.png",
       "dependencies": []
     },
     "lib/media/pasted-image-20240826221432.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 119904,
       "exportedPath": "lib/media/pasted-image-20240826221432.png",
       "dependencies": []
     },
     "lib/media/pasted-image-20240826221522.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 53314,
       "exportedPath": "lib/media/pasted-image-20240826221522.png",
       "dependencies": []
     },
     "lib/media/pasted-image-20240826221617.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 485896,
       "exportedPath": "lib/media/pasted-image-20240826221617.png",
       "dependencies": []
     },
     "lib/media/pasted-image-20240826221624.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 289367,
       "exportedPath": "lib/media/pasted-image-20240826221624.png",
       "dependencies": []
     },
     "lib/media/pasted-image-20240826221720.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 49376,
       "exportedPath": "lib/media/pasted-image-20240826221720.png",
       "dependencies": []
     },
     "lib/media/pasted-image-20240826221740.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 51603,
       "exportedPath": "lib/media/pasted-image-20240826221740.png",
       "dependencies": []
     },
     "lib/styles/other-plugins.css": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 123898,
       "exportedPath": "lib/styles/other-plugins.css",
       "dependencies": []
     },
     "lib/media/pasted-image-20240904221918.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 15210,
       "exportedPath": "lib/media/pasted-image-20240904221918.png",
       "dependencies": []
     },
     "lib/media/pasted-image-20240904221948.png": {
-      "modifiedTime": 1725720469652,
+      "modifiedTime": 1725973823349,
       "sourceSize": 3848,
       "exportedPath": "lib/media/pasted-image-20240904221948.png",
       "dependencies": []
