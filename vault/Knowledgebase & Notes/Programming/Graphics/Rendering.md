@@ -304,20 +304,14 @@ Finally, throw e1' e2' e3' into a matrix.
 | e1'.z e2'.z e3'.z camPos.z |
 |  0     0     0       1     |
 ```
-But hold on, this matrix is for LOCAL to GLOBAL. **ALL default e1'e2'e3' matrices are LOCAL TO GLOBAL.** So, need to inverse that matrix! Inverting 3x3 is a pain, so just memorize this formula:
+But hold on, this matrix is for LOCAL to GLOBAL. **ALL default e1'e2'e3' matrices are LOCAL TO GLOBAL.** So, we need to inverse that matrix! Inverting 3x3 is a pain... but thank goodness it's easy in this case. There's a special property of orthonormal 3x3 matrices (all 3 columns are orthogonal and normalized): the inverse of this matrix is the same as the transpose of this matrix! So we transpose the above matrix (the 3x3 portion) to get the below:
 ```
-A = [ M   b  ]
-    [ 0   1  ]
-    
-inv(A) = [ inv(M)   -inv(M) * b ]
-         [   0            1     ]
-
 | e1'.x  e1'.y  e1'.z  -e1'·camPos |
 | e2'.x  e2'.y  e2'.z  -e2'·camPos |
 | e3'.x  e3'.y  e3'.z  -e3'·camPos |
 |   0      0      0         1      |
 
-Note: last col is dot product, giving a scalar.
+Note: 4th col is a dot product of 2 vectors, and not a regular period.
 ```
 https://stackoverflow.com/questions/2624422/efficient-4x4-matrix-inverse-affine-transform
 Potential way to speed up Ax=b operations without finding A inverse: https://www.johndcook.com/blog/2010/01/19/dont-invert-that-matrix/
@@ -415,28 +409,33 @@ Reviewing what we have previously:
 |  0  0 Nz  0 | * | Pz | = | Pz * Nz | = | Pz * Nz / Pz |
 |  0  0  1  0 |   | 1  |   |   Pz    |
 ```
-Focusing on the Z row: `Pz * Nz / Pz`
+Focusing on the final Z value: `Pz * Nz / Pz`
 We can see that the z value of the evaluated point always resolves to Nz at the end. That's not good.
 
-Firstly, we can completely ignore the near plane value `Nz`. We purely want `Pz` at the end, and the near/far plane values don't matter (for now).
-So, we need this last bit to resolve to `Pz` if possible. This means that, for the previous step, instead of obtaining `Pz * Nz`, we should ideally obtain `Pz`^2
-
+We'd want our final Z value to match the original `Pz` value of the original point in the ideal scenario. This means that we can mostly ignore `Nz` for now and try to obtain `Pz` as our final Z value.
+This means that, for the previous step, instead of obtaining `Pz * Nz`, we should ideally obtain `Pz`^2
+```
+| Nz  0  0  0 |   | Px |   | Px * Nz |   | Px * Nz / Pz |
+|  0 Nz  0  0 |   | Py |   | Py * Nz |   | Px * Nz / Pz |
+|  ?  ?  ?  ? | * | Pz | = |   Pz^2  | = | Pz * Pz / Pz |
+|  0  0  1  0 |   | 1  |   |   Pz    |
+```
 The only 2 values in the matrix we have to work with are the Nz value and the 0 to its right. Let's label them m1 and m2.
 ```
 | Nz  0  0  0  |   | Px |
 |  0 Nz  0  0  |   | Py |
-|  0  0 m1  m2 | * | Pz | = | Pz^2?? |
+|  0  0 m1  m2 | * | Pz | = |   Pz^2  |
 |  0  0  1  0  |   | 1  |
 ```
-We can try to make an equation to obtain Pz^2 from this:
-`m1*Pz + m2 = Pz`^2
+Focusing on the Z row, we can try to make an equation to obtain Pz^2 from this:
+`m1*Pz + m2 = Pz^2`
 
 Unfortunately, there isn't a straightforward solution. There is no way to obtain `Pz`^2 for all values of `Pz`.
-This is now a quadratic equation, aka a curve.
+This is now a quadratic equation, which results in a curve.
 
-Now, solve for m1 and m2 simultaneously. This means we have to plug something into Pz. What values should we plug? Well, the near and far planes! (because what other values lol)
-For `Pz == n`, get eqn 1
-For `Pz == f`, get eqn 2
+Solve for m1 and m2 simultaneously. This means we have to plug something into Pz. What values should we plug? Well, the near and far planes! (because what other values asre there to use lol)
+When `Pz == n`, we get `m1*n + m2 = n^2`
+When `Pz == f`, we get `m1*f + m2 = n^f`
 Solve simultaneously to get: 
 `m1 = f + n`
 `m2 = -fn`
@@ -448,13 +447,25 @@ Plug this into the matrix:
 |  0  0 f+n -fn | * | Pz | = | Pz^2... sometimes |
 |  0  0  1   0  |   | 1  |
 ```
-Caveats: This quadratic will NOT provide `Pz` all the time. However, it will still provide a value, `1/z`, that is still in order.
+This solution is not the most ideal, but it's the closest we can get to the ideal value Pz.
+If we dig deeper, we can see that this final Z value has the property of `1/Pz`:
+```
+Focusing on Z row: [...matrix...] = f+n-fn(1/Pz) = final Z value
+```
 Problems arise when n and f are too far apart, and the values obtained are too close together, thus resulting in z fighting.
 ![](https://developer-blogs.nvidia.com/wp-content/uploads/2015/07/depth-perception-graph1-b.jpg)
 More on Z-fighting due to precision loss: https://developer.nvidia.com/blog/visualizing-depth-precision/
-One way to combat this issue, Reverse Z: https://tomhultonharrop.com/mathematics/graphics/2023/08/06/reverse-z.html
+To summarize:
+- The closer your z values are to 0, the more bunched up these ticks on the Z-axis will get.
+- Moving objects a tiny bit in this z range will cause your d (depth) value to jump much more than if you moved the same tiny bit further out towards the far plane, causing higher chance of Z-fighting
+- Floating-point precision inconsistencies with slightly different camera angles can be enough to cause the tiny value changes on the z-axis
+- Moving your near plane closer to 0 will cause more intense Z-fighting as more values reside on the steeper portions of the graph. Moving the near plane further out will reduce Z-fighting.
 
-Aite grape! Full perspective projection done, put it together with mapping into NDC and that's it.
+One way to combat this issue, Reverse Z: https://tomhultonharrop.com/mathematics/graphics/2023/08/06/reverse-z.html
+![](https://developer-blogs.nvidia.com/wp-content/uploads/2021/05/depth-precision-graph5-625x324.jpg)
+We map the 0 and 1 the other way round instead, so that when Z-fighting happens, it happens further away from the camera. Now, moving your far plane further away will result in a higher chance of Z-fighting, leaving the closer objects less prone to Z-fighting.
+
+Aite great! Full perspective projection done, put it together with mapping into NDC and that's it.
 ## Clipping: Liang-Barsky Algorithm
 ![](https://upload.wikimedia.org/wikipedia/commons/0/01/Cube_clipping.svg)
 
@@ -712,6 +723,45 @@ void main()
     [...]
 }  
 ```
+# Pipelines
+## Vertex Shader Pipeline
+## Mesh Shader Pipeline
+
+
+# Shading
+https://www.aortiz.me/2018/12/21/CG.html
+## Foward Render
+## Foward+ Render
+https://github.com/bcrusco/Forward-Plus-Renderer
+## Deferred Render
+## Tiled Shading
+## Clustered Shading
+
+# Culling
+## Frustum Culling (CPU)
+## Z Prepass
+## HBZ
+## Occlusion Culling (CPU)
+## GPU Culling
+
+# Lighting
+## PBR
+## Raytracing
+
+# Shadows
+## Shadow Map
+https://en.wikipedia.org/wiki/Shadow_mapping
+## Cascading Shadow Map
+
+# Instancing/Draw Calls
+## YOLO
+Loop through each object and render each one with its own draw call.
+## Static Batching
+## Dynamic Batching
+## GPU Instance Renderer
+Use single draw call to render multiple instances of a single object, but with different position, rotation scale etc.
+## Multi-Draw Indirect (GPU Rendering)
+## Bindless
 
 # Power Efficient Rendering
 https://www.jonpeddie.com/news/trends-and-forecasts-in-computer-graphics-power-efficient-rendering/
