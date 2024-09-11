@@ -763,12 +763,13 @@ If im not wrong, we render only fragments IN each light sphere by rendering the 
 ![](https://learnopengl.com/img/advanced-lighting/deferred_light_volume_rendered.png)
 
 ### Deferred Lighting
-Additional optimization on top of deferred shading
+Additional optimization on top of deferred shading.
+TODO.
 
 ### Tile based deferred shading
 Additional optimization on top of deferred shading
+TODO.
 
-TODO: Dig deeper into each step of def. rendering.
 ## Forward+ Render
 https://github.com/bcrusco/Forward-Plus-Renderer
 TLDR:
@@ -799,15 +800,25 @@ TLDR:
 https://en.wikipedia.org/wiki/Shadow_mapping
 ## Cascading Shadow Map
 
-# Instancing/Draw Calls
+# Rendering Pipeline Architecture
 ## YOLO
-Loop through each object and render each one with its own draw call.
-## Static Batching
-## Dynamic Batching
-## GPU Instance Renderer
-Use single draw call to render multiple instances of a single object, but with different position, rotation scale etc.
-## Multi-Draw Indirect (GPU Rendering)
-## Bindless
+Loop through each object and render each one with its own draw call. Many small and frequent draw calls, lots of data being sent, not good.
+## Batch Rendering
+### Static Batching
+### Dynamic Batching
+
+## GPU-Driven Rendering
+Broad concept of using the GPU to handle more of the rendering workload that was traditionally handled by the CPU. Used for rendering huge scenes.
+Known as:
+Instance Rendering (but on GPU)
+
+Implementations by others:
+[Unity 6] GPU Resident Drawer
+[Anvil] GPU Instance Renderer
+### GPU Instancing
+
+### Multi-Draw Indirect
+### Bindless Textures
 
 # Post Processing
 ## Anti-aliasing
