@@ -736,7 +736,6 @@ https://www.aortiz.me/2018/12/21/CG.html
 - Handles transparency nicely, assuming the order is drawn from back to front. Blends the colors based on depth nicely.
 - May be hard to handle some post processing effects like screen-space reflections, ambient occlusion, or complex multi-pass shaders due to being single-pass.
 
-TODO: Dig deeper into each step of fwd rendering.
 ## Deferred Render
 https://learnopengl.com/Advanced-Lighting/Deferred-Shading
 ### Deferred Shading
