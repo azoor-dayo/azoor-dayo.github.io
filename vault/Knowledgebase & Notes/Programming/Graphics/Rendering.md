@@ -730,10 +730,56 @@ void main()
 
 # Shading
 https://www.aortiz.me/2018/12/21/CG.html
-## Foward Render
-## Foward+ Render
-https://github.com/bcrusco/Forward-Plus-Renderer
+## Forward Render
+- Renders and shades each object in a single pass, lights and all.
+- Each object gets shaded based on all lights that affect it (or in the scene). Will get very expensive if there are many lights.
+- Handles transparency nicely, assuming the order is drawn from back to front. Blends the colors based on depth nicely.
+- May be hard to handle some post processing effects like screen-space reflections, ambient occlusion, or complex multi-pass shaders due to being single-pass.
+
+TODO: Dig deeper into each step of fwd rendering.
 ## Deferred Render
+https://learnopengl.com/Advanced-Lighting/Deferred-Shading
+### Deferred Shading
+- Renders objects in 2 passes. 
+- First pass: Geometry Pass. Stored in the gbuffer.
+    - Gbuffer contains details such as color, depth, normals etc WITHOUT lighting. Basically all the data you'd need to do lighting.
+    ![](https://learnopengl.com/img/advanced-lighting/deferred_g_buffer.png)
+- Second pass: Deferred Shading Pass.
+    - Lighting is computed per-pixed using data from each pixel in the gbuffer. Also consideres all lights in a scene, but does not do work on pixels from objects that are already covred. Reduces wasted lighting computation due to overdrawn pixels.
+    ![](https://learnopengl.com/img/advanced-lighting/deferred_overview.png)
+    - Filling gbuffers is not too bad, can fill them all in a single render pass by using multiple render targets (MRT)
+    - Lighting computation is the same as in Forawrd rendering. It also opens up possibilities for more advanced lighting methods
+- Post processing is applied after the final pass. Due to the existence of gbuffer, it's easier to implement many effects.
+- Gbuffer results in more memory use, depending on number of buffers and the data precision requried by each buffer.
+- Transparency won't work properly without additional funky workarounds, as the g-buffer only stores information of the top-most fragment, disallowing blending from happening.
+    - Workaround: Add an additional Foward Render pass after deferred rendering, for objects that have transparency. Use the existing depth buffer from the gbuffer so that the foward rendered objects don't always render on top of all other objects
+    - ![](https://learnopengl.com/img/advanced-lighting/deferred_lights_depth.png)
+
+### Light Volumes
+Calculate the radius that a point light can reach fragments. According to the maths, the intensity of light on a pixel from a light source should approach 0 but never reach 0, thus light has an "infinite" radius. But we can set a "dark enough" value to cut off this radius at a certain radius.
+
+With a radius and the point light position, we can create a light volume (basically a sphere).
+Eh the rest idk go and read it up: https://learnopengl.com/Advanced-Lighting/Deferred-Shading
+If im not wrong, we render only fragments IN each light sphere by rendering the SPHERE itself to take advantage of the GPU's thread branching shennanigans. We don't actually render texture for the sphere, but we abuse the fact that when we "render" the sphere, we also touch the fragments that need to be shaded. So we run lighting on those. If these light volumes overlap, we blend the results together additively (whatever that means). Tada, lighting! Instead of iterating over every fragment on the screen and checking if it can be lit, we only touch those that we KNOW should be lit. Black magic.
+![](https://learnopengl.com/img/advanced-lighting/deferred_light_volume_rendered.png)
+
+### Deferred Lighting
+Additional optimization on top of deferred shading
+
+### Tile based deferred shading
+Additional optimization on top of deferred shading
+
+TODO: Dig deeper into each step of def. rendering.
+## Forward+ Render
+https://github.com/bcrusco/Forward-Plus-Renderer
+TLDR:
+- For every fragment, culls away potential light sources that never reach this fragment
+- Instead of doing per-fragment, it checks and culls light sources per-frustum of 16x16 pixel tiles. The near/far planes of this frustum is determined by the min and max depth of all the fragments in this 16x16 tile.
+    - 16x16=256 threads are used to compute the min/max depths for the near/far plane of the frustum, and the frustum is then created.
+    - 16x16=256 threads can then be used in parallel for checking if each light source in the scene can reach this frustum or not. Keep checking 256 lights at a time until all lights in the scene are checked.
+    - Visible light sources for every tile is stored in a shader storage buffer object (SSBO)
+- Final shading happens in a second pass. For each frag, check which tile it belongs to, and extract the light sources to use from the SSBO. Tada, done.
+
 ## Tiled Shading
 ## Clustered Shading
 
@@ -745,6 +791,7 @@ https://github.com/bcrusco/Forward-Plus-Renderer
 ## GPU Culling
 
 # Lighting
+## Static vs Dynamic Lights
 ## PBR
 ## Raytracing
 
@@ -762,6 +809,13 @@ Loop through each object and render each one with its own draw call.
 Use single draw call to render multiple instances of a single object, but with different position, rotation scale etc.
 ## Multi-Draw Indirect (GPU Rendering)
 ## Bindless
+
+# Post Processing
+## Anti-aliasing
+### FSAA
+### MSAA
+## Motion Blur
+## Bloom
 
 # Power Efficient Rendering
 https://www.jonpeddie.com/news/trends-and-forecasts-in-computer-graphics-power-efficient-rendering/
