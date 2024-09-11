@@ -26,7 +26,7 @@ Screen/Device Coords System:
 Origin TOP LEFT, size is dependent. If full device resolution, 1920x1080. If a window, then whatever the window size is e.g. 800x600. Windows OS has this layout.
 
 > OpenGL does conversion from NDC to Screen/Device Coords automagically.
-# Line Rasterizaction
+# Line Rasterization
 Using y=mx+c, we can calculate which pixel is on the line as we iterate through each pixel on X axis. But we don't wanna run the m\*x + c every iteration, more expensive. Instead, find the increment of y for every x (aka the m value) and use that to apply iteratively. 
 
 `next x = last x + m`. 
@@ -813,8 +813,8 @@ Known as:
 Instance Rendering (but on GPU)
 
 Implementations by others:
-[Unity 6] GPU Resident Drawer
-[Anvil] GPU Instance Renderer
+(Unity 6) GPU Resident Drawer
+(Anvil) GPU Instance Renderer
 ### GPU Instancing
 
 ### Multi-Draw Indirect
