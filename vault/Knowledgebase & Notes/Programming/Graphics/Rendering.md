@@ -813,8 +813,8 @@ Implementations by others:
 ### Batch Rendering
 Grouping rendering commands into a single batch (draw call).
 Batch needs to use the same state/resources in order to minimize swapping out resources and render state.
-#### Static Batching
-#### Dynamic Batching
+
+Objects are grouped into static and dynamic batches. Static batches are for non-moving objects, which means it can be reused without re-gerenating data. Dynamic batches are for objects that move around in the scene, thus the data needs to be updated every frame. Separating these 2 types open up areas for optimization.
 #### GPU Instancing (Instance Rendering)
 A form of batch rendering.
 Renders multiple instances of the same object in a single draw call. Useful for many identical objects.
