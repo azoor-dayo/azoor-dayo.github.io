@@ -736,6 +736,9 @@ https://www.aortiz.me/2018/12/21/CG.html
 - Handles transparency nicely, assuming the order is drawn from back to front. Blends the colors based on depth nicely.
 - May be hard to handle some post processing effects like screen-space reflections, ambient occlusion, or complex multi-pass shaders due to being single-pass.
 
+### Multi pass foward rendering
+For each mesh(object) and light combination we issue a single draw call additively blending the results until the image has been fully assembled. This is a lot of draw calls if we have many objects and many lights. n*m draw calls. Basically an unga bunga method of rendering.
+
 ## Deferred Render
 https://learnopengl.com/Advanced-Lighting/Deferred-Shading
 ### Deferred Shading
@@ -822,6 +825,9 @@ Renders multiple instances of the same object in a single draw call. Useful for 
 Multiple draw commands get written to a buffer, and the CPU triggers a single draw call.
 The GPU reads this buffer and performs multiple commands in one go.
 ### Bindless Textures
+
+# Tiling shit idk where it goes
+Tiled rendering: https://www.slideshare.net/slideshow/advancements-intiledrendering/46162853#1
 
 # Post Processing
 ## Anti-aliasing
