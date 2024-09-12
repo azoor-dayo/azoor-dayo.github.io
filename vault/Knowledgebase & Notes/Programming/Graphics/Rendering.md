@@ -801,23 +801,26 @@ https://en.wikipedia.org/wiki/Shadow_mapping
 ## Cascading Shadow Map
 
 # Rendering Pipeline Architecture
+Focuses on the CPU-GPU communication. Goal is to reduce overhead on data transfers, reduce amount of data being sent, and optimize GPU utilization.
 ## YOLO
 Loop through each object and render each one with its own draw call. Many small and frequent draw calls, lots of data being sent, not good.
-## Batch Rendering
-### Static Batching
-### Dynamic Batching
-
 ## GPU-Driven Rendering
 Broad concept of using the GPU to handle more of the rendering workload that was traditionally handled by the CPU. Used for rendering huge scenes.
-Known as:
-Instance Rendering (but on GPU)
 
 Implementations by others:
 (Unity 6) GPU Resident Drawer
 (Anvil) GPU Instance Renderer
-### GPU Instancing
-
+### Batch Rendering
+Grouping rendering commands into a single batch (draw call).
+Batch needs to use the same state/resources in order to minimize swapping out resources and render state.
+#### Static Batching
+#### Dynamic Batching
+#### GPU Instancing (Instance Rendering)
+A form of batch rendering.
+Renders multiple instances of the same object in a single draw call. Useful for many identical objects.
 ### Multi-Draw Indirect
+Multiple draw commands get written to a buffer, and the CPU triggers a single draw call.
+The GPU reads this buffer and performs multiple commands in one go.
 ### Bindless Textures
 
 # Post Processing
@@ -829,6 +832,7 @@ Implementations by others:
 
 # Power Efficient Rendering
 https://www.jonpeddie.com/news/trends-and-forecasts-in-computer-graphics-power-efficient-rendering/
+https://pdf.sciencedirectassets.com/280203/1-s2.0-S1877050923X00027/1-s2.0-S1877050923000698/main.pdf?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEHcaCXVzLWVhc3QtMSJGMEQCIGnpi5eyAATKRHCkbJ%2Fy43vPUXDq7AMJBsfpO%2BLMHZZZAiBPk6GbKnZSVWnbn28oh3%2FHXnQk%2FzS0%2FQnbvq9bUDNbgiq7BQig%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAUaDDA1OTAwMzU0Njg2NSIMOBRZ2OCKOeK4l2C0Ko8Fv7BHNx60lWiq96O4vovS%2FCoppvVdA2FqnItPFjqiFJsY9hjpK%2FztPdTUcgO5LNGL9XGjgbpODqDtNk2n%2B38CMehZlmk5gd1sGcQNKMx%2FanfkSeKZTXQfPVirOofDt%2FfJBhrwjrxqAtUOK3li%2BtHFc2QtIo%2Bgzc6L848i9J%2BeLTwKYGr7oAITAsEiVvtTVZ8R6pzVy4c1vZhv3WjpqdLKbDQ8SsSZYEAqOkE5Xc3JRS6LrXyOWooQiOIFWpdqfT2xTVzr60uCzG54UFRnUO0msaYdtxl80JUhbr0zU3IvJNLYz0MzPsqaYMSBRd2O4QvMu2lrPsxqErZXMNgx50Rd4KHRDHZYkc76e6R7n%2BDsEoCNwnKxquD7Wtckfms6K3xKCCjBGo2yci0A5p%2B7NVCJkHwYyg7pBVr0ushzzjTWAUykwE%2BE7C1qSPtFefmW5SZm3ceIe8%2BMr3I1v389UkQGJ7%2B2Cz0NaxUsBDyLR6huy4B85cFpcyprl8iHSrIRbOjgjNstD4ny0Q1xfcBrkz%2F%2FQ7nAqqxnCMhvFJu%2BUfaQU6nuGFLfXtfvvWTGKml8UPIN75h2%2BjOvIBjd4kI2cRR3bgnmQaHyP5wwlFefj5PqNesnmEN5b%2FZ7VH2OEP5Ixbd7IYB4xwyhNwkUviajX7e%2FHOy4jnHqMdcc4QPx84ksgYvuE8y5aCFxur9OC%2BHOtQBBSVIA18cJ3VSmmp9XDkw7rLbq4ziEG8CSVySxfTWEPGWVYhBpdPWhXzm7POsJ41xt39uTSo2pJ0H0qn%2BKvDB5NTywJTfwfZfgZTW5k2ZvHYSHofGAPJNd00EC0ToD%2FG7HGvtdrZTNPo9ZCqR5cuIZ5QKsyay3ISePuAiWrMWnOTDXm4q3BjqyAaxS%2FRfdOLruuvsfZ2jalggZOvD0D%2BmXzrykC3xE8TZPby8IZ4S28L0fwri%2F7XyjkUZFBN3JrpPZrCmhHLiSNoIhmr9hXERKCXSESusWPXQrKf0ShM%2BwHEazu1qL%2F3%2B0ebzNSvG%2BvkYEj77b6PnvJ89O%2F8E12Khd7vGS7MIRqzakXFAK27lPFfs2F4rOE4z3ozQ4%2BQoWnZHYVJ6Z8dxX2OrAOl4u%2B5mJE8EOwQ4Ab%2FWRSK8%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240912T072406Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIAQ3PHCVTYRFR4CYX3%2F20240912%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=465e15e98b3b277a5fdb27d2e9da12f5edfb1ce6ad28a0d1a100cc9b9237ea4d&hash=c4d6654cb9f97b226dc5c8298599042de9e229a1456f9a2751dfdf69b1d79a12&host=68042c943591013ac2b2430a89b270f6af2c76d8dfd086a07176afe7c76c2c61&pii=S1877050923000698&tid=spdf-33e5cee7-ae02-427c-9833-546cad4248a6&sid=6171501676d33546139b74e24e9ca3f8ff37gxrqb&type=client&tsoh=d3d3LnNjaWVuY2VkaXJlY3QuY29t&ua=1d035a03560153520a&rr=8c1e27e85fd19c65&cc=sg
 Interesting things:
 - Immediate mode rendering may be more power efficient depending on the amount of updates. A dynamically switching render mode can be most power efficient.
 - Regular rendering techniques also apply here.
