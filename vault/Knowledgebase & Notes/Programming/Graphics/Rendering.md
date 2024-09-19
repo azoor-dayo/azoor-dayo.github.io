@@ -714,14 +714,12 @@ void main()
 // FRAG SHADER
 void main()
 {           
-    vec3 normal = texture(normalMap, fs_in.TexCoords).rgb;
-    normal = normalize(normal * 2.0 - 1.0);   
-   
-   // normalize values because interpolated values from fs_in may not be normalized anymore
-    vec3 lightDir = fs_in.TBN * normalize(lightPos - fs_in.FragPos); 
-    vec3 viewDir  = fs_in.TBN * normalize(viewPos - fs_in.FragPos);    
-    [...]
-}  
+    vec3 normal = texture(normalMap, fs_in.TexCoords).rgb;  // extract normals from normal map
+    normal = normalize(normal * 2.0 - 1.0);                 // Re-adjust normals from range [0,1] to [-1,1]
+    vec3 lightDir = normalize(fs_in.TangentLightPos - fs_in.TangentFragPos);
+    vec3 viewDir  = normalize(fs_in.TangentViewPos - fs_in.TangentFragPos);
+    [...] // use normal, light and view values in tangent space for lighting computation
+}    
 ```
 # Pipelines
 ## Vertex Shader Pipeline
@@ -741,7 +739,7 @@ For each mesh(object) and light combination we issue a single draw call additive
 
 ## Deferred Render
 https://learnopengl.com/Advanced-Lighting/Deferred-Shading
-### Deferred Shading
+### Deferred Shading (G-Buffer)
 - Renders objects in 2 passes. 
 - First pass: Geometry Pass. Stored in the gbuffer.
     - Gbuffer contains details such as color, depth, normals etc WITHOUT lighting. Basically all the data you'd need to do lighting.
