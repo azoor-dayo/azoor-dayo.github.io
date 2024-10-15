@@ -799,6 +799,10 @@ TLDR:
 # Shadows
 ## Shadow Map
 https://en.wikipedia.org/wiki/Shadow_mapping
+https://learnopengl.com/Advanced-Lighting/Shadows/Shadow-Mapping
+
+Render the scene from the light's POV. Anything not seen by light must be in shadow.
+![](https://learnopengl.com/img/advanced-lighting/shadow_mapping_theory.png)
 ## Cascading Shadow Map
 
 # Rendering Pipeline Architecture
