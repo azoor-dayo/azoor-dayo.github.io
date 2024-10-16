@@ -763,10 +763,6 @@ Eh the rest idk go and read it up: https://learnopengl.com/Advanced-Lighting/Def
 If im not wrong, we render only fragments IN each light sphere by rendering the SPHERE itself to take advantage of the GPU's thread branching shennanigans. We don't actually render texture for the sphere, but we abuse the fact that when we "render" the sphere, we also touch the fragments that need to be shaded. So we run lighting on those. If these light volumes overlap, we blend the results together additively (whatever that means). Tada, lighting! Instead of iterating over every fragment on the screen and checking if it can be lit, we only touch those that we KNOW should be lit. Black magic.
 ![](https://learnopengl.com/img/advanced-lighting/deferred_light_volume_rendered.png)
 
-### Deferred Lighting
-Additional optimization on top of deferred shading.
-TODO.
-
 ### Tile based deferred shading
 Additional optimization on top of deferred shading
 TODO.
@@ -792,6 +788,14 @@ TLDR:
 ## GPU Culling
 
 # Lighting
+## Deferred Lighting
+Additional optimization on top of deferred shading.
+TLDR:
+It's just lighting not done together.
+Usually light is calculated by Color\*Intensity\*GI\*....
+Calculating them all together isn't good, cos high memory costs for doing everything at once. So split lighting calculations up, just like how we split up rendering.
+
+Get the bonus of culling away lighting calculations that isn't needed, e.g. if a pixel is completely in a shadow.
 ## Static vs Dynamic Lights
 ## PBR
 ## Raytracing
@@ -803,6 +807,35 @@ https://learnopengl.com/Advanced-Lighting/Shadows/Shadow-Mapping
 
 Render the scene from the light's POV. Anything not seen by light must be in shadow.
 ![](https://learnopengl.com/img/advanced-lighting/shadow_mapping_theory.png)
+
+The light is rendered at a certain (adjustable) texture (around 1024 pixels maybe) into a depth map.
+![](https://media.discordapp.net/attachments/974564610369785856/1295661464056500224/image.png?ex=670f7645&is=670e24c5&hm=167c059cf9f29816fc2faa839e52de152f6e512c682623ebf1f0fddcaace718a&=&format=webp&quality=lossless)
+
+This depth map can be used to see if screen space pixels are in shadows or lit by each light source. We take a pixel we want to sample from the screen (in screen space), and send it from screen space to light POV space (for each shadow map). Grab the corresponding depth value from the shadow map, and then compare it with the depth value of the pixel. If is further from light source vs the shadow map's depth value, pixel is occluded from light, and should be in shadow.
+![](https://media.discordapp.net/attachments/974564610369785856/1295673221361700875/image.png?ex=670f8138&is=670e2fb8&hm=2239269001c64ada5faf984b32b8b4d2c9690ca3e4e48025a833acc024b4b665&=&format=webp&quality=lossless)
+
+Shadow value can be either 0 or 1, and applied directly to the screen space pixel for coloring. This can be somewhat of a "shadow mask" if done in a separate pass. If 0, means occluded. 1 means illuminated. 
+
+Any values between 0 and 1 can exist, if you want softer shadows and not a hard shadow edge. For hard shadows and for simplicity, values are either 0 or 1.
+
+> Note: Examples are all spotlights. How to do shadow maps with point lights? Use a cubemap, do 6 captures for every side. 
+
+## Shadow Mask
+You might realise that "hey shadows are expensive as shit wtf".
+Yes.
+One expense comes from having to send every single screen space pixel (unless culling/grouping is already done) into every single shadow map/light's POV space. That's expensive as shit computationally wise, but also sampling wise. You'd need all of the shadow maps loaded most of the time to do all your shadow stuff.
+
+We can avoid that shit by pre-computing a mask that contains the shadow intensity value for every fragment in screen space. 
+
+First, create a shadow mask buffer that is equal in dimensions to your screen. Then, for every fragment on screen, transform its position from world space to light space. Test the depth of the fragment, and compare it to the shadow map's correesponding pixel depth. Same as before, if fragment is further from light source than the value in the shadow map depth buffer, fragement is occluded from the light source, and "shadow value" should be 0. Else, 1 for lit. Save this value into the corresponding screen fragment in the shadow mask.
+
+Rinse and repeat this action for the next few light sources. But for every iteration, you write the new shadow mask value into another component of the same corresponding shadow mask element. So each shadow mask element should contain one float/bool value for every light source. If you have 4 light sources, each shadow mask element should be a float4.
+
+> If there are more lights than a single mask can support, then you'd need more masks.
+> https://digitalrune.github.io/DigitalRune-Documentation/html/a3f49f80-226e-4a6b-b13a-dbf673b41438.htm
+
+Less memory is used to store one shadow mask vs many shadow maps, and can reduce cache misses. Depending on how we build this shadow mask, we can minimize the cache miss during this process too. It's also easier to reuse the shadow mask for more advanced post processing.
+
 ## Cascading Shadow Map
 
 # Rendering Pipeline Architecture
